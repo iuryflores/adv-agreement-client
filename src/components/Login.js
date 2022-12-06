@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import api from "../utils/api.utils.js";
 import { useNavigate } from "react-router-dom";
-import './Login.css'
+
+import logo from "../images/iury.png";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,26 +29,36 @@ const Login = () => {
   };
   return (
     <div className="login">
-      <h3><i class="bi bi-folder-check"></i> Adv Manager</h3>
-      {" "}
+      <h3>
+        <i className="bi bi-folder-check"></i> Adv Manager
+      </h3>{" "}
       {message !== "" && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <label>Email: </label>
         <input
+          className="input-login"
           type="text"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="off"
         />
         <label>Password: </label>
         <input
+          className="input-login"
           type="password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button className="button" type="submit">
+          Login
+        </button>
       </form>
+      <footer>
+        <span>© 2022 | Iury Flores </span>
+        <img className="logo" src={logo} />
+      </footer>
     </div>
   );
 };
