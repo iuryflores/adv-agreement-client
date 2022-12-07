@@ -57,7 +57,7 @@ const Login = () => {
       </form>
       <footer>
         <span>© 2022 | Iury Flores </span>
-        <img className="logo" src={logo} />
+        <img className="logo" src={logo} alt='Iury Flores' />
       </footer>
     </div>
   );
