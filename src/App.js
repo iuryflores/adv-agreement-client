@@ -1,17 +1,25 @@
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import { Login, User, Home, Defendant, AddDefendant } from "./pages";
+import Footer from "./components/Footer";
 
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import User from './pages/User';
-
+import { useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
+      {useLocation().pathname !== "/" && <Navbar />}
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/users' element={<User />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/process" element={<Home />} />
+        <Route path="/defendant" element={<Defendant />} />
+        <Route path="/add-defendant" element={<AddDefendant />} />
+        <Route path="/parcels" element={<Home />} />
+        <Route path="/users" element={<User />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

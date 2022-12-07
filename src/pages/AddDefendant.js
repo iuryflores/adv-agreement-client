@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import api from "../utils/api.utils.js";
 import { useNavigate } from "react-router-dom";
 
-import "./Login.css";
-
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export const AddDefendant = () => {
+  const [full_name, setFull_name] = useState("");
+  const [cnpj, setCnpj] = useState("");
   const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
@@ -14,10 +13,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.login({ email, password });
-      navigate("/home");
+      await api.addDefendant({ full_name, cnpj });
+      navigate("/defendant");
     } catch (error) {
-      showMessage(`${error.toUpperCase()}!`);
+      showMessage(`${error.response.data}!`);
     }
   };
   const showMessage = (message) => {
@@ -27,36 +26,30 @@ const Login = () => {
     }, 3000);
   };
   return (
-    <div className="login">
-      <h3>
-        <i className="bi bi-folder-check"></i> Adv Manager
-      </h3>{" "}
+    <div>
       {message !== "" && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
-        <label>Email: </label>
+        <label>Fullname: </label>
         <input
           className="input-login"
           type="text"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="full_name"
+          value={full_name}
+          onChange={(e) => setFull_name(e.target.value)}
           autoComplete="off"
         />
-        <label>Password: </label>
+        <label>CNPJ: </label>
         <input
           className="input-login"
-          type="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          name="cnpj"
+          value={cnpj}
+          onChange={(e) => setCnpj(e.target.value)}
         />
         <button className="button" type="submit">
-          Login
+          Add
         </button>
       </form>
-     
     </div>
   );
 };
-
-export default Login;

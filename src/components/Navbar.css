@@ -1,0 +1,20 @@
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: aliceblue;
+    width: 100%;
+    color: #0F52BA;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 0.8rem;
+}
+
+
+
+ul {
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
+}

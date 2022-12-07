@@ -3,7 +3,7 @@ import axios from "axios";
 class Api {
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:5000/"
+      baseURL: "https://clumsy-wig-slug.cyclic.app/"
     });
     this.api.interceptors.request.use(
       (config) => {
@@ -44,6 +44,22 @@ class Api {
       return data;
     } catch (error) {
       console.log(error, `Could not load Users`);
+    }
+  };
+  getDefendants = async () => {
+    try {
+      const { data } = await this.api.get("defendant");
+      return data;
+    } catch (error) {
+      console.log(error, "Could not load Defendants");
+    }
+  };
+  addDefendant = async (defendatData) => {
+    try {
+      const { data } = await this.api.post("/defendant", defendatData);
+      return data;
+    } catch (error) {
+      console.log(error, "Could not add defendant");
     }
   };
 }

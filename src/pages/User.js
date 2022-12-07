@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import api from "../utils/api.utils.js";
 
-const User = () => {
-  const [users, setUsers] = useState("[]");
+export const User = () => {
+  const [users, setUsers] = useState([]);
 
   const getUsers = async () => {
     try {
@@ -18,9 +18,11 @@ const User = () => {
   return (
     <div>
       <h1>All Users</h1>
-
+      {users.map((user) => {
+        return user.full_name;
+      })}
     </div>
   );
 };
 
-export default User;
+
