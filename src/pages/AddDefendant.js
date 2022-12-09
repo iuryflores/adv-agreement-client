@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import api from "../utils/api.utils.js";
+import { MsgError } from "../components/Shared";
 import { useNavigate } from "react-router-dom";
 
 export const AddDefendant = () => {
@@ -8,26 +9,26 @@ export const AddDefendant = () => {
   const [cnpj, setCnpj] = useState("");
   const [message, setMessage] = useState("");
 
-  const navigate = useNavigate();
+  const navigator = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await api.addDefendant({ full_name, cnpj });
-      navigate("/defendant");
+      navigator("/defendant");
     } catch (error) {
-      showMessage(`${error.response.data}!`);
+      showMessage(error);
     }
   };
   const showMessage = (message) => {
     setMessage(message);
     setTimeout(() => {
-      setMessage("");
+      setMessage(message);
     }, 3000);
   };
   return (
     <div>
-      {message !== "" && <p>{message}</p>}
+      {message !== "" && <MsgError>{message}</MsgError>}
       <form onSubmit={handleSubmit}>
         <label>Fullname: </label>
         <input

@@ -3,6 +3,7 @@ import api from "../utils/api.utils.js";
 import { useNavigate } from "react-router-dom";
 
 import "./Login.css";
+import { MsgError } from "./Shared.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,21 +18,21 @@ const Login = () => {
       await api.login({ email, password });
       navigate("/home");
     } catch (error) {
-      showMessage(`${error.toUpperCase()}!`);
+      showMessage(error);
     }
   };
   const showMessage = (message) => {
     setMessage(message);
     setTimeout(() => {
-      setMessage("");
-    }, 3000);
+      setMessage(message);
+    }, 1000);
   };
   return (
     <div className="login">
       <h3>
         <i className="bi bi-folder-check"></i> Adv Manager
-      </h3>{" "}
-      {message !== "" && <p>{message}</p>}
+      </h3>
+      {message !== "" && <MsgError>{message}</MsgError>}
       <form onSubmit={handleSubmit}>
         <label>Email: </label>
         <input
@@ -54,7 +55,6 @@ const Login = () => {
           Login
         </button>
       </form>
-     
     </div>
   );
 };

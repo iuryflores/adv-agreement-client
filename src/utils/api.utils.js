@@ -35,7 +35,7 @@ class Api {
       const { data } = await this.api.post("/user/auth/login", loginInfo);
       localStorage.setItem("token", data.token);
     } catch (error) {
-      throw error.response.data.message;
+      throw error.response.data.msg;
     }
   };
   getUsers = async () => {
@@ -59,7 +59,31 @@ class Api {
       const { data } = await this.api.post("/defendant", defendatData);
       return data;
     } catch (error) {
-      console.log(error, "Could not add defendant");
+      throw error.response.data.msg;
+    }
+  };
+  getOneDefendant = async (id) => {
+    try {
+      const { data } = await this.api.get(`/defendant/${id}`);
+      return data;
+    } catch (error) {
+      console.log(error, "Could not load Defendant");
+    }
+  };
+  editDefendant = async (defendantData, id) => {
+    try {
+      const { data } = await this.api.put(`/defendant/${id}`, defendantData);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  deleteDefendant = async (id) => {
+    try {
+      const { data } = await this.api.delete(`/defendant/${id}`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
     }
   };
 }
