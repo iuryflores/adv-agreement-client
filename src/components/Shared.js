@@ -17,13 +17,15 @@ export const LinkNav = styled(Link)`
   }
 `;
 export const Button = styled(Link)`
-  padding: 10px 25px;
+  
   text-decoration: none;
   position:absolute;
   top:80px;
-  right:10px;
+  font-size:2rem;
+  right:20px;
   color: inherit;
-  margin: 10px 0;
+  width:50px;
+  height:50px;
   background-color:#4682b4;
   border-radius: 30px;
   border: 0;

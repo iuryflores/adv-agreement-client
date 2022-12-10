@@ -19,13 +19,13 @@ export const Defendant = () => {
     getDefendants();
   }, []);
   return (
-    <div>
+    <div className="wrap">
       {!defendants !== "" ? (
         <h3>All defendants</h3>
       ) : (
         <h3> No defendant registred!</h3>
       )}
-      <Button to="/add-defendant">+ Add defendant +</Button>
+      <Button to="/add-defendant">+</Button>
       {defendants.map((defendant, index) => (
         <DefendantCard to={`/defendant/${defendant._id}`} key={index}>
           <span>

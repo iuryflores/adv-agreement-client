@@ -42,7 +42,7 @@ export const ViewDefendant = () => {
     }, 3000);
   };
   return (
-    <div>
+    <div className="wrap">
       <div
         style={{
           width: "90vw",

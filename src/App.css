@@ -8,3 +8,8 @@ a {
   text-decoration: none;
   color:inherit;
 }
+.wrap {
+  margin-top: 80px;
+  height: 80vh;
+  padding: 5px;
+}
