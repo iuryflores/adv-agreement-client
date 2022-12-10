@@ -7,6 +7,9 @@ import { ButtonView, MsgError } from "../components/Shared";
 export const ViewDefendant = () => {
   const { id } = useParams();
   const [defendant, setDefendant] = useState("");
+  const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const getOneDefendant = async () => {
     try {
@@ -16,11 +19,10 @@ export const ViewDefendant = () => {
       console.error(error);
     }
   };
+
   useEffect(() => {
     getOneDefendant();
   }, []);
-
-  const navigate = useNavigate();
 
   const DeleteOneDefendant = async () => {
     try {
@@ -30,11 +32,7 @@ export const ViewDefendant = () => {
       showMessage(error);
     }
   };
-  useEffect(() => {
-    getOneDefendant();
-  }, []);
 
-  const [message, setMessage] = useState('');
   const showMessage = (message) => {
     setMessage(message);
     setTimeout(() => {
@@ -66,7 +64,7 @@ export const ViewDefendant = () => {
         CNPJ: <b>{defendant.cnpj}</b>{" "}
       </p>
       <ButtonView>DEALS</ButtonView>
-      <ButtonView>PROCESS</ButtonView>
+      <ButtonView to={`/defendant/${id}/process`}>PROCESS</ButtonView>
       {message !== "" && <MsgError>{message}</MsgError>}
     </div>
   );

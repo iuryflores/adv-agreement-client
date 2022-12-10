@@ -23,7 +23,7 @@ export const Defendant = ({ message, setMessage }) => {
     setTimeout(() => {
       setMessage(null);
     }, 5000);
-  },[message]);
+  }, [message]);
   return (
     <div className="wrap">
       {message && <MsgSucess>{message}</MsgSucess>}

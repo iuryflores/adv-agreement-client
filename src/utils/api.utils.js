@@ -94,6 +94,22 @@ class Api {
       throw error.response.data.msg;
     }
   };
+  getDefendantProcess = async (id) => {
+    try {
+      const { data } = await this.api.get(`/defendant/${id}/process`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  addDefendantProcess = async (processData, id) => {
+    try {
+      const { data } = await this.api.post(`/defendant/${id}/process`, processData);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
 }
 
 export default new Api();

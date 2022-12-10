@@ -9,7 +9,7 @@ import {
   AddDefendant,
   ViewDefendant,
   EditDefendant,
-  SignUp
+  SignUp, DefendantProcess
 } from "./pages";
 
 import Navbar from "./components/Navbar";
@@ -25,22 +25,13 @@ function App() {
       {location !== "/" && location !== "/user/auth/signup" && <Navbar />}
 
       <Routes>
-        <Route
-          path="/"
-          element={<Login message={message} setMessage={setMessage} />}
-        />
+        <Route path="/" element={<Login message={message} setMessage={setMessage} />} />
         <Route path="/user/auth/signup" element={<SignUp setMessage={setMessage} />}  />
-        <Route path="/home" element={<Home />} />
         <Route path="/process" element={<Home />} />
-        <Route
-          path="/defendant"
-          element={<Defendant message={message} setMessage={setMessage} />}
-        />
-        <Route
-          path="/add-defendant"
-          element={<AddDefendant setMessage={setMessage} />}
-        />
+        <Route path="/defendant" element={<Defendant message={message} setMessage={setMessage} />} />
+        <Route path="/add-defendant" element={<AddDefendant setMessage={setMessage} />} />
         <Route path="/defendant/:id" element={<ViewDefendant />} />
+        <Route path="/defendant/:id/process" element={<DefendantProcess message={message} setMessage={setMessage}  />} />
         <Route path="/defendant-edit/:id" element={<EditDefendant />} />
         <Route path="/users" element={<User />} />
       </Routes>
