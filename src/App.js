@@ -8,7 +8,8 @@ import {
   Defendant,
   AddDefendant,
   ViewDefendant,
-  EditDefendant
+  EditDefendant,
+  SignUp
 } from "./pages";
 
 import Navbar from "./components/Navbar";
@@ -17,11 +18,18 @@ import Footer from "./components/Footer";
 function App() {
   const [message, setMessage] = useState(null);
 
+  let location = useLocation().pathname;
+
   return (
     <div className="App">
-      {useLocation().pathname !== "/" && <Navbar />}
+      {location !== "/" && location !== "/user/auth/signup" && <Navbar />}
+
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route
+          path="/"
+          element={<Login message={message} setMessage={setMessage} />}
+        />
+        <Route path="/user/auth/signup" element={<SignUp setMessage={setMessage} />}  />
         <Route path="/home" element={<Home />} />
         <Route path="/process" element={<Home />} />
         <Route
@@ -36,7 +44,7 @@ function App() {
         <Route path="/defendant-edit/:id" element={<EditDefendant />} />
         <Route path="/users" element={<User />} />
       </Routes>
-      {useLocation().pathname !== "/" && <Footer />}
+      {location !== "/" && location !== "/user/auth/signup" && <Footer />}
     </div>
   );
 }

@@ -38,6 +38,14 @@ class Api {
       throw error.response.data.msg;
     }
   };
+  signUp = async (signUpInfo) => {
+    try {
+      const { data } = await this.api.post("/user/auth/signup", signUpInfo);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
   getUsers = async () => {
     try {
       const { data } = await this.api.get("/users");

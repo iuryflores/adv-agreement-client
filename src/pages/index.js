@@ -5,3 +5,4 @@ export * from './Defendant.js';
 export * from './AddDefendant.js';
 export * from './ViewDefendant.js';
 export * from './EditDefendant.js';
+export * from './SignUp.js';
