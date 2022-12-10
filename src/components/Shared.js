@@ -43,6 +43,12 @@ padding:5px 20px;
 margin-bottom:10px;
 border-radius:5px;
 `
+export const MsgSucess = styled.div`
+background-color:#AFE1AF;
+padding:5px 20px;
+margin-bottom:10px;
+border-radius:5px;
+`
 export const DefendantCard = styled(Link)`
 border:1px solid #4682b4;
 padding:10px 15px;

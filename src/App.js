@@ -1,13 +1,22 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import { Login, User, Home, Defendant, AddDefendant, ViewDefendant, EditDefendant } from "./pages";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useState } from "react";
+import {
+  Login,
+  User,
+  Home,
+  Defendant,
+  AddDefendant,
+  ViewDefendant,
+  EditDefendant
+} from "./pages";
+
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import { useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar";
-
-
 function App() {
+  const [message, setMessage] = useState(null);
+
   return (
     <div className="App">
       {useLocation().pathname !== "/" && <Navbar />}
@@ -15,13 +24,19 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/process" element={<Home />} />
-        <Route path="/defendant" element={<Defendant />} />
-        <Route path="/add-defendant" element={<AddDefendant />} />
+        <Route
+          path="/defendant"
+          element={<Defendant message={message} setMessage={setMessage} />}
+        />
+        <Route
+          path="/add-defendant"
+          element={<AddDefendant setMessage={setMessage} />}
+        />
         <Route path="/defendant/:id" element={<ViewDefendant />} />
         <Route path="/defendant-edit/:id" element={<EditDefendant />} />
         <Route path="/users" element={<User />} />
       </Routes>
-      <Footer />
+      {useLocation().pathname !== "/" && <Footer />}
     </div>
   );
 }

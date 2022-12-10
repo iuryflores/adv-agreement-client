@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import api from "../utils/api.utils.js";
 import { useNavigate } from "react-router-dom";
 
-import "./Login.css";
+
 import { MsgError } from "./Shared.js";
 
 const Login = () => {

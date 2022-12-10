@@ -4,7 +4,7 @@ import api from "../utils/api.utils";
 import { useEffect, useState } from "react";
 import { ButtonView } from "../components/Shared";
 
-import "./Defendant.css";
+
 
 export const EditDefendant = () => {
   const { id } = useParams();

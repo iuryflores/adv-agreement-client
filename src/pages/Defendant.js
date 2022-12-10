@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 import apiUtils from "../utils/api.utils";
-import { Button, DefendantCard } from "../components/Shared";
+import { Button, DefendantCard, MsgSucess } from "../components/Shared";
 
-export const Defendant = () => {
+export const Defendant = ({ message, setMessage }) => {
   const [defendants, setDefendants] = useState([]);
 
   const getDefendants = async () => {
@@ -18,8 +18,15 @@ export const Defendant = () => {
   useEffect(() => {
     getDefendants();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage(null);
+    }, 5000);
+  });
   return (
     <div className="wrap">
+      {message && <MsgSucess>{message}</MsgSucess>}
       {!defendants !== "" ? (
         <h3>All defendants</h3>
       ) : (

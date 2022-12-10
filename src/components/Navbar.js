@@ -1,13 +1,13 @@
 import React from "react";
 
-import "./Navbar.css";
+
 import { LinkNav } from "./Shared";
 
 const Navbar = () => {
   return (
     <nav>
       <h3>
-        <i className="bi bi-folder-check"></i> Adv Manager
+        <i className="bi bi-folder-check"></i>Adv Manager
       </h3>
       <ul className="ul-top">
         <LinkNav to="process"><i className="bi bi-folder"></i> PROCESS</LinkNav>

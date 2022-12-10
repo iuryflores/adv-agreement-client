@@ -3,11 +3,12 @@ import { useState } from "react";
 import api from "../utils/api.utils.js";
 import { MsgError } from "../components/Shared";
 import { useNavigate } from "react-router-dom";
+import { cnpjMask } from "../components/CnpjMask.js";
 
-export const AddDefendant = () => {
+export const AddDefendant = ({ setMessage }) => {
   const [full_name, setFull_name] = useState("");
   const [cnpj, setCnpj] = useState("");
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const navigator = useNavigate();
 
@@ -15,21 +16,23 @@ export const AddDefendant = () => {
     e.preventDefault();
     try {
       await api.addDefendant({ full_name, cnpj });
+      setMessage("Defendant created.");
       navigator("/defendant");
     } catch (error) {
       showMessage(error);
     }
   };
-  const showMessage = (message) => {
-    setMessage(message);
+  const showMessage = (error) => {
+    setError(error);
     setTimeout(() => {
-      setMessage(message);
+      setError(error);
     }, 3000);
   };
+
   return (
     <div className="wrap">
       <h3>Adding defendants</h3>
-      {message !== "" && <MsgError>{message}</MsgError>}
+      {error !== "" && <MsgError>{error}</MsgError>}
       <form onSubmit={handleSubmit}>
         <label>Fullname: </label>
         <input
@@ -45,8 +48,10 @@ export const AddDefendant = () => {
           className="input-login"
           type="text"
           name="cnpj"
-          value={cnpj}
-          onChange={(e) => setCnpj(e.target.value)}
+          value={cnpjMask(cnpj)}
+          onChange={(e) => {
+            setCnpj(e.target.value);
+          }}
         />
         <button className="button" type="submit">
           Add
