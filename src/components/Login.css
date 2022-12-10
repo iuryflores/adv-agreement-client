@@ -10,17 +10,6 @@ body {
     font-size: 1.1rem;
 }
 
-input:focus {
-    outline: none;
-}
-
-.input-login {
-    padding: 10px 25px;
-    border-radius: 20px;
-    ;
-    border: 0;
-    text-align: center;
-}
 
 
 .button {

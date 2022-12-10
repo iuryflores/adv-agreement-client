@@ -6,10 +6,37 @@
 
 a {
   text-decoration: none;
-  color:inherit;
+  color: inherit;
 }
+
 .wrap {
   margin-top: 80px;
   height: 80vh;
   padding: 5px;
+}
+
+@media only screen and (min-width: 600px) {
+  input {
+    width: 60vw;
+
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  input {
+    width: 80vw;
+
+  }
+}
+
+input:focus {
+  outline: none;
+}
+
+.input-login {
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  border: 0;
+  text-align: center;
 }

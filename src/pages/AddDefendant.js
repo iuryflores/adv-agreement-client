@@ -27,7 +27,8 @@ export const AddDefendant = () => {
     }, 3000);
   };
   return (
-    <div>
+    <div className="wrap">
+      <h3>Adding defendants</h3>
       {message !== "" && <MsgError>{message}</MsgError>}
       <form onSubmit={handleSubmit}>
         <label>Fullname: </label>
