@@ -10,10 +10,10 @@ const Navbar = () => {
         <i className="bi bi-folder-check"></i> Adv Manager
       </h3>
       <ul className="ul-top">
-        <LinkNav to="process"><i class="bi bi-folder"></i> PROCESS</LinkNav>
-        <LinkNav to="defendant"><i class="bi bi-buildings-fill"></i> DEFENDANT</LinkNav>
-        <LinkNav to="deals"><i class="bi bi-arrow-left-right"></i> DEALS</LinkNav>
-        <LinkNav to="parcels"><i class="bi bi-currency-dollar"></i> PARCELS</LinkNav>
+        <LinkNav to="process"><i className="bi bi-folder"></i> PROCESS</LinkNav>
+        <LinkNav to="defendant"><i className="bi bi-buildings-fill"></i> DEFENDANT</LinkNav>
+        <LinkNav to="deals"><i className="bi bi-arrow-left-right"></i> DEALS</LinkNav>
+        <LinkNav to="parcels"><i className="bi bi-currency-dollar"></i> PARCELS</LinkNav>
       </ul>
     </nav>
   );

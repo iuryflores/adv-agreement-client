@@ -14,16 +14,16 @@ const Footer = () => {
       <div className="menu-footer">
         <ul>
           <Link to="/process">
-            <i class="bi bi-folder"></i>PROCESS
+            <i className="bi bi-folder"></i>PROCESS
           </Link>
           <Link to="/defendant">
-            <i class="bi bi-buildings-fill"></i>DEFENDANT
+            <i className="bi bi-buildings-fill"></i>DEFENDANT
           </Link>
           <Link to="/deals">
-            <i class="bi bi-arrow-left-right"></i>DEALS
+            <i className="bi bi-arrow-left-right"></i>DEALS
           </Link>
           <Link to="/parcels">
-            <i class="bi bi-currency-dollar"></i>PARCELS
+            <i className="bi bi-currency-dollar"></i>PARCELS
           </Link>
         </ul>
       </div>
