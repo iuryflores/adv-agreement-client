@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import api from "../utils/api.utils.js";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 import { MsgError } from "./Shared.js";
 
@@ -29,6 +28,7 @@ const Login = () => {
   };
   return (
     <div className="login">
+      <h2>Welcome</h2>
       <h3>
         <i className="bi bi-folder-check"></i> Adv Manager
       </h3>
@@ -51,9 +51,13 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <span>Forgot password?</span>
         <button className="button" type="submit">
           Login
         </button>
+        <p style={{ marginTop: "80px" }}>
+          Don't have an account? <Link to="/user/auth/signup">Sign Up</Link>
+        </p>
       </form>
     </div>
   );
