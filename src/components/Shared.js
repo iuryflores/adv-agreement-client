@@ -47,7 +47,7 @@ padding:10px 15px;
 background-color:aliceblue;
 color:#0F52BA;
 display:flex;
-width:70vw;
+width:90vw;
 justify-content:space-between;
 align-items:center;
 text-decoration:none;

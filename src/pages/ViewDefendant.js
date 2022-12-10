@@ -45,7 +45,7 @@ export const ViewDefendant = () => {
     <div>
       <div
         style={{
-          width: "100%",
+          width: "90vw",
           display: "flex",
           justifyContent: "flex-end",
           color: "white"

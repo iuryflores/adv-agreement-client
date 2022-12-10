@@ -8,13 +8,19 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    font-size: 0.8rem;
+   
 }
 
 
 
-ul {
+.ul-top {
     display: flex;
     width: 40%;
     justify-content: space-around;
+}
+
+@media only screen and (max-width: 600px) {
+    .ul-top {
+        display: none;
+    }
 }
