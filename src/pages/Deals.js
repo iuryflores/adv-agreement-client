@@ -5,11 +5,13 @@ import { MsgSucess, Button, DefendantCard } from "../components/Shared";
 
 export const Deals = ({ message, setMessage, loading, setLoading }) => {
   const [deals, setDeals] = useState([]);
+  const [process, setProcess] = useState("");
 
   const getDeals = async () => {
     try {
       const data = await api.getDeals();
       setDeals(data);
+      setProcess(data.processId);
       setLoading(false);
     } catch (error) {
       console.log(error, "Error to get law suit");
@@ -31,18 +33,24 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
       <h3>All Deals</h3>
       {deals.length <= 0 && <h3> No deal registred!</h3>}
       {deals.map((deal, index) => (
-        <DefendantCard to={`/process/${process._id}`} key={index}>
+        <DefendantCard to={`/deal/${deal._id}`} key={index}>
           <p>
-            <i className="bi bi-folder"></i> Date: <b>{deal.dueDate}</b>
+            <i className="bi bi-folder"></i>
           </p>
           <p>
-            Number: <b>{process.processNumber}</b>
+            Defendant: <b>{deal.defendantId.full_name}</b>
           </p>
           <p>
-            Defendant: <b>{process.defendantId.full_name}</b>
+            Complainant: <b>{deal.processId.complainantName}</b>
           </p>
           <p>
-            Complainant: <b>{process.complainantName}</b>
+            Total de quotas: <b>{deal.quotas}</b>
+          </p>
+          <p>
+            Price total: <b>{deal.price}</b>
+          </p>
+          <p>
+            Status: <b>{deal.status === true ? "Active" : ""}</b>
           </p>
           <i className="bi bi-box-arrow-right"></i>
         </DefendantCard>
