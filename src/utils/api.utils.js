@@ -104,7 +104,18 @@ class Api {
   };
   addDefendantProcess = async (processData, id) => {
     try {
-      const { data } = await this.api.post(`/defendant/${id}/process`, processData);
+      const { data } = await this.api.post(
+        `/defendant/${id}/process`,
+        processData
+      );
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getProcess = async (id) => {
+    try {
+      const { data } = await this.api.get(`/process/${id}`);
       return data;
     } catch (error) {
       throw error.response.data.msg;

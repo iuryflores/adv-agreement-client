@@ -86,3 +86,14 @@ export const ButtonView = styled(Link)`
     border: 2px solid white;
   }
 `;
+export const ProcessCard = styled.div`
+  border: 1px solid white;
+  width:80vw;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  padding: 5px 15px;
+  background-color:aliceblue;
+  color:#0F52BA;
+  border-radius:5px;
+`;

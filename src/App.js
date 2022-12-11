@@ -9,11 +9,12 @@ import {
   AddDefendant,
   ViewDefendant,
   EditDefendant,
-  SignUp, DefendantProcess
+  SignUp, DefendantProcess, ViewProcess
 } from "./pages";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -27,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login message={message} setMessage={setMessage} />} />
         <Route path="/user/auth/signup" element={<SignUp setMessage={setMessage} />}  />
-        <Route path="/process" element={<Home />} />
+        <Route path="/process/:id" element={<ViewProcess />} />
         <Route path="/defendant" element={<Defendant message={message} setMessage={setMessage} />} />
         <Route path="/add-defendant" element={<AddDefendant setMessage={setMessage} />} />
         <Route path="/defendant/:id" element={<ViewDefendant />} />
