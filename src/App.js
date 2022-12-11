@@ -22,6 +22,7 @@ import Footer from "./components/Footer";
 function App() {
   const [message, setMessage] = useState(null);
   const [defendant, setDefendant] = useState("");
+  const [loading, setLoading] = useState(true);
 
   let location = useLocation().pathname;
 
@@ -40,19 +41,19 @@ function App() {
         />
         <Route
           path="/process/:id"
-          element={<ViewProcess message={message} setMessage={setMessage} />}
+          element={<ViewProcess message={message} setMessage={setMessage} loading={loading} setLoading={setLoading} />}
         />
         <Route
           path="/defendant/:id/add-process"
-          element={<AddProcess setMessage={setMessage} />}
+          element={<AddProcess setMessage={setMessage}  loading={loading} setLoading={setLoading} />}
         />
         <Route
           path="/defendant"
-          element={<Defendant message={message} setMessage={setMessage} />}
+          element={<Defendant message={message} setMessage={setMessage}  loading={loading} setLoading={setLoading} />}
         />
         <Route
           path="/add-defendant"
-          element={<AddDefendant setMessage={setMessage} />}
+          element={<AddDefendant setMessage={setMessage}  loading={loading} setLoading={setLoading} />}
         />
         <Route
           path="/process/:id/add-deal"
@@ -61,18 +62,19 @@ function App() {
               setMessage={setMessage}
               defendant={defendant}
               setDefendant={setDefendant}
+              loading={loading} setLoading={setLoading} 
             />
           }
         />
 
-        <Route path="/defendant/:id" element={<ViewDefendant />} />
+        <Route path="/defendant/:id" element={<ViewDefendant  loading={loading} setLoading={setLoading} />} />
         <Route
           path="/defendant/:id/process"
           element={
-            <DefendantProcess message={message} setMessage={setMessage} />
+            <DefendantProcess message={message} setMessage={setMessage} loading={loading} setLoading={setLoading}  />
           }
         />
-        <Route path="/defendant-edit/:id" element={<EditDefendant />} />
+        <Route path="/defendant-edit/:id" element={<EditDefendant  loading={loading} setLoading={setLoading} />} />
         <Route path="/users" element={<User />} />
       </Routes>
       {location !== "/" && location !== "/user/auth/signup" && <Footer />}

@@ -3,13 +3,15 @@ import React, { useState, useEffect } from "react";
 import apiUtils from "../utils/api.utils";
 import { Button, DefendantCard, MsgSucess } from "../components/Shared";
 
-export const Defendant = ({ message, setMessage }) => {
+export const Defendant = ({ message, setMessage, loading, setLoading }) => {
   const [defendants, setDefendants] = useState([]);
+  
 
   const getDefendants = async () => {
     try {
       const data = await apiUtils.getDefendants();
       setDefendants(data);
+      setLoading(false);
     } catch (error) {
       console.log(error, "Error to get defendants");
     }
@@ -24,7 +26,7 @@ export const Defendant = ({ message, setMessage }) => {
       setMessage(null);
     }, 5000);
   }, [message]);
-  return (
+  return !loading ? (
     <div className="wrap">
       {message && <MsgSucess>{message}</MsgSucess>}
       {!defendants !== "" ? (
@@ -43,5 +45,7 @@ export const Defendant = ({ message, setMessage }) => {
         </DefendantCard>
       ))}
     </div>
+  ) : (
+    <div>loading...</div>
   );
 };

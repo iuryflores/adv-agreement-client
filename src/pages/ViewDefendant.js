@@ -4,7 +4,7 @@ import api from "../utils/api.utils";
 import { useEffect, useState } from "react";
 import { ButtonView, MsgError } from "../components/Shared";
 
-export const ViewDefendant = () => {
+export const ViewDefendant = ({ loading, setLoading }) => {
   const { id } = useParams();
   const [defendant, setDefendant] = useState("");
   const [message, setMessage] = useState("");
@@ -15,6 +15,7 @@ export const ViewDefendant = () => {
     try {
       const data = await api.getOneDefendant(id);
       setDefendant(data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -39,8 +40,9 @@ export const ViewDefendant = () => {
       setMessage(message);
     }, 3000);
   };
-  return (
+  return !loading ? (
     <div className="wrap">
+      <h3>Defendant page</h3>
       <div
         style={{
           width: "90vw",
@@ -57,6 +59,7 @@ export const ViewDefendant = () => {
           <i className="bi bi-trash3"> </i>
         </Link>
       </div>
+
       <p>
         Corporate name: <b>{defendant.full_name}</b>{" "}
       </p>
@@ -67,5 +70,7 @@ export const ViewDefendant = () => {
       <ButtonView to={`/defendant/${id}/process`}>PROCESS</ButtonView>
       {message !== "" && <MsgError>{message}</MsgError>}
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };
