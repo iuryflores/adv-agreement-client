@@ -9,3 +9,4 @@ export * from './SignUp.js';
 export * from './DefendantProcess.js';
 export * from './ViewProcess.js';
 export * from './AddProcess.js';
+export * from './AddDeal.js';

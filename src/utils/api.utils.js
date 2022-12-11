@@ -52,7 +52,7 @@ class Api {
       const { data } = await this.api.get("/users");
       return data;
     } catch (error) {
-      console.log(error, `Could not load Users`);
+      throw error.response.data.msg
     }
   };
   getDefendants = async () => {
@@ -60,7 +60,7 @@ class Api {
       const { data } = await this.api.get("defendant");
       return data;
     } catch (error) {
-      console.log(error, "Could not load Defendants");
+      throw error.response.data.msg
     }
   };
   addDefendant = async (defendatData) => {
@@ -76,7 +76,7 @@ class Api {
       const { data } = await this.api.get(`/defendant/${id}`);
       return data;
     } catch (error) {
-      console.log(error, "Could not load Defendant");
+     throw error.response.data.msg
     }
   };
   editDefendant = async (defendantData, id) => {
@@ -103,7 +103,6 @@ class Api {
       throw error.response.data.msg;
     }
   };
-
   getProcess = async (id) => {
     try {
       const { data } = await this.api.get(`/process/${id}`);
@@ -126,6 +125,22 @@ class Api {
         `/defendant/${id}/add-process`,
         processData
       );
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  addDealToProcess = async (dealData, id) => {
+    try {
+      const { data } = await this.api.post(`/process/${id}/add-deal`, dealData);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getProcessToAddDeal = async (id) => {
+    try {
+      const { data } = await this.api.get(`/process/${id}/add-deal`);
       return data;
     } catch (error) {
       throw error.response.data.msg;

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../utils/api.utils.js";
-import { ButtonView, ProcessCard } from "../components/Shared.js";
+import { ButtonView, ProcessCard, MsgSucess } from "../components/Shared.js";
 
-export const ViewProcess = () => {
+export const ViewProcess = ({message, setMessage}) => {
   const { id } = useParams();
 
   const [process, setProcess] = useState("");
@@ -19,8 +19,14 @@ export const ViewProcess = () => {
   useEffect(() => {
     getProcess();
   }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage(null);
+    }, 5000);
+  }, [message]);
   return (
     <>
+    {message && <MsgSucess>{message}</MsgSucess>}
       <h3>Process view</h3>
 
       <ProcessCard>
@@ -31,10 +37,10 @@ export const ViewProcess = () => {
           Process number: <b> {process.processNumber}</b>
         </span>
         <span>
-          Defendant: <b> {process.defendantId.full_name}</b>
+          Defendant: <b> {/*process.defendantId.full_name*/}</b>
         </span>
         <span>
-          Defendant CNPJ: <b> {process.defendantId.cnpj}</b>
+          Defendant CNPJ: <b> {/*process.defendantId.cnpj*/}</b>
         </span>
         <span>
           Complainant: <b> {process.complainantName}</b>
@@ -52,8 +58,9 @@ export const ViewProcess = () => {
           Status: <b> {process.status === true && "Active"}</b>
         </span>
       </ProcessCard>
-
-      <ButtonView style={{marginTop:'50px'}}>Deal</ButtonView>
+     
+      <ButtonView to={`/process/${id}/add-deal`}  style={{marginTop:'50px'}}>Add Deal</ButtonView>
+      
     </>
   );
 };
