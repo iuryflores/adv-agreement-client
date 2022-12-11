@@ -3,8 +3,8 @@ import axios from "axios";
 class Api {
   constructor() {
     this.api = axios.create({
-      baseURL: "https://clumsy-wig-slug.cyclic.app/"
-      //baseURL: "http://localhost:5000/"
+      //baseURL: "https://clumsy-wig-slug.cyclic.app/"
+      baseURL: "http://localhost:5000/"
     });
     this.api.interceptors.request.use(
       (config) => {
@@ -52,15 +52,15 @@ class Api {
       const { data } = await this.api.get("/users");
       return data;
     } catch (error) {
-      throw error.response.data.msg
+      throw error.response.data.msg;
     }
   };
   getDefendants = async () => {
     try {
-      const { data } = await this.api.get("defendant");
+      const { data } = await this.api.get("/defendant");
       return data;
     } catch (error) {
-      throw error.response.data.msg
+      throw error.response.data.msg;
     }
   };
   addDefendant = async (defendatData) => {
@@ -76,7 +76,7 @@ class Api {
       const { data } = await this.api.get(`/defendant/${id}`);
       return data;
     } catch (error) {
-     throw error.response.data.msg
+      throw error.response.data.msg;
     }
   };
   editDefendant = async (defendantData, id) => {
@@ -141,6 +141,14 @@ class Api {
   getProcessToAddDeal = async (id) => {
     try {
       const { data } = await this.api.get(`/process/${id}/add-deal`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getLawSuit = async () => {
+    try {
+      const { data } = await this.api.get("/process");
       return data;
     } catch (error) {
       throw error.response.data.msg;

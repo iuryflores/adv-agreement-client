@@ -10,3 +10,5 @@ export * from './DefendantProcess.js';
 export * from './ViewProcess.js';
 export * from './AddProcess.js';
 export * from './AddDeal.js';
+export * from './Process.js';
+export * from './Deals.js';

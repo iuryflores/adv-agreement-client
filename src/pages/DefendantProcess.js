@@ -18,10 +18,11 @@ export const DefendantProcess = ({ message, setMessage }) => {
       console.log(error);
     }
   };
-
+  let dateProcess;
   const getAllProcessDefendant = async () => {
     try {
       const data = await api.getDefendantProcess(id);
+
       setLawSuit(data);
     } catch (error) {
       console.log(error, "Error to get defendants");
@@ -32,16 +33,18 @@ export const DefendantProcess = ({ message, setMessage }) => {
   }, []);
   useEffect(() => {
     getAllProcessDefendant();
-  },[]);
+  }, []);
   return (
     <div>
-       <Button to={`/defendant/${id}/add-process`}>+</Button>
+      <Button to={`/defendant/${id}/add-process`}>+</Button>
       <h3 style={{ display: "flex", flexDirection: "column" }}>
         <span>All process from</span>
         <span>{defendant.full_name}</span>
         <span>({defendant.cnpj})</span>
       </h3>
-      {lawSuit.length === 0 && <p>None process for this defendant was created!</p>}
+      {lawSuit.length === 0 && (
+        <p>None process for this defendant was created!</p>
+      )}
       {lawSuit.map((process, index) => {
         return (
           <DefendantCard key={index} to={`/process/${process._id}`}>
@@ -50,9 +53,13 @@ export const DefendantProcess = ({ message, setMessage }) => {
               Date:{" "}
               <b>
                 {
-                  (process.dateProcess = new Date(
+                  (dateProcess = new Date(
                     process.dateProcess
-                  ).toLocaleDateString())
+                  ).toLocaleDateString("pt-br", {
+                    day: "numeric",
+                    month: "numeric",
+                    year: "numeric"
+                  }))
                 }
               </b>
             </p>

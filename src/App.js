@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
   Login,
-  User,
+  Process,
   Home,
   Defendant,
   AddDefendant,
@@ -13,7 +13,7 @@ import {
   DefendantProcess,
   ViewProcess,
   AddProcess,
-  AddDeal
+  AddDeal, Deals
 } from "./pages";
 
 import Navbar from "./components/Navbar";
@@ -75,7 +75,8 @@ function App() {
           }
         />
         <Route path="/defendant-edit/:id" element={<EditDefendant  loading={loading} setLoading={setLoading} />} />
-        <Route path="/users" element={<User />} />
+        <Route path="/process" element={<Process message={message} setMessage={setMessage} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/deals" element={<Deals message={message} setMessage={setMessage} loading={loading} setLoading={setLoading}/>} />
       </Routes>
       {location !== "/" && location !== "/user/auth/signup" && <Footer />}
     </div>
