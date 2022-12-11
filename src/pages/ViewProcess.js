@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../utils/api.utils.js";
-import { ProcessCard } from "../components/Shared.js";
+import { ButtonView, ProcessCard } from "../components/Shared.js";
 
 export const ViewProcess = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ export const ViewProcess = () => {
   };
   useEffect(() => {
     getProcess();
-  },[]);
+  }, []);
   return (
     <>
       <h3>Process view</h3>
@@ -49,12 +49,11 @@ export const ViewProcess = () => {
           Judgment: <b> {process.judgment}</b>
         </span>
         <span>
-          Status: <b> {process.status === true && 'Active'}</b>
+          Status: <b> {process.status === true && "Active"}</b>
         </span>
       </ProcessCard>
-      <div>
-        Deal
-      </div>
+
+      <ButtonView style={{marginTop:'50px'}}>Deal</ButtonView>
     </>
   );
 };

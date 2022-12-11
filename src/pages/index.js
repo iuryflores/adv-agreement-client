@@ -8,3 +8,4 @@ export * from './EditDefendant.js';
 export * from './SignUp.js';
 export * from './DefendantProcess.js';
 export * from './ViewProcess.js';
+export * from './AddProcess.js';

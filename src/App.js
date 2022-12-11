@@ -9,7 +9,7 @@ import {
   AddDefendant,
   ViewDefendant,
   EditDefendant,
-  SignUp, DefendantProcess, ViewProcess
+  SignUp, DefendantProcess, ViewProcess, AddProcess
 } from "./pages";
 
 import Navbar from "./components/Navbar";
@@ -29,8 +29,10 @@ function App() {
         <Route path="/" element={<Login message={message} setMessage={setMessage} />} />
         <Route path="/user/auth/signup" element={<SignUp setMessage={setMessage} />}  />
         <Route path="/process/:id" element={<ViewProcess />} />
+        <Route path="/defendant/:id/add-process" element={<AddProcess setMessage={setMessage} />} />
         <Route path="/defendant" element={<Defendant message={message} setMessage={setMessage} />} />
         <Route path="/add-defendant" element={<AddDefendant setMessage={setMessage} />} />
+        
         <Route path="/defendant/:id" element={<ViewDefendant />} />
         <Route path="/defendant/:id/process" element={<DefendantProcess message={message} setMessage={setMessage}  />} />
         <Route path="/defendant-edit/:id" element={<EditDefendant />} />

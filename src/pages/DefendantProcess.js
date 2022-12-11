@@ -1,7 +1,7 @@
 import React from "react";
 import api from "../utils/api.utils";
 import { useState, useEffect } from "react";
-import { DefendantCard } from "../components/Shared";
+import { DefendantCard, Button } from "../components/Shared";
 import { useParams } from "react-router-dom";
 
 export const DefendantProcess = ({ message, setMessage }) => {
@@ -32,9 +32,10 @@ export const DefendantProcess = ({ message, setMessage }) => {
   }, []);
   useEffect(() => {
     getAllProcessDefendant();
-  });
+  },[]);
   return (
     <div>
+       <Button to={`/defendant/${id}/add-process`}>+</Button>
       <h3 style={{ display: "flex", flexDirection: "column" }}>
         <span>All process from</span>
         <span>{defendant.full_name}</span>

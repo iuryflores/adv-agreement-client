@@ -19,7 +19,7 @@ export const LinkNav = styled(Link)`
 export const Button = styled(Link)`
   text-decoration: none;
   position: absolute;
-  top: 80px;
+  top: 100px;
   font-size: 2rem;
   right: 20px;
   color: inherit;
