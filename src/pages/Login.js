@@ -61,7 +61,7 @@ export const Login = ({ message, setMessage }) => {
         <button className="button" type="submit">
           Login
         </button>
-        <p style={{ marginTop: "80px" }}>
+        <p style={{ marginTop: "50px" }}>
           Don't have an account? <Link to="/user/auth/signup">Sign Up</Link>
         </p>
       </form>

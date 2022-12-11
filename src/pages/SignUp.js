@@ -32,7 +32,8 @@ export const SignUp = ({ setMessage }) => {
 
   return (
     <div className="login">
-      <h3>Sign Up</h3>
+      <h4>Sign Up</h4>
+      
       {error !== "" && <MsgError>{error}</MsgError>}
       <form onSubmit={handleSubmit}>
         <label>Full name: </label>
@@ -67,7 +68,7 @@ export const SignUp = ({ setMessage }) => {
         <button className="button" type="submit">
           Sign Up
         </button>
-        <p style={{ marginTop: "80px" }}>
+        <p>
          Already have an account? <Link to="/">Log In</Link>
         </p>
       </form>
