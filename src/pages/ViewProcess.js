@@ -18,21 +18,14 @@ export const ViewProcess = () => {
   };
   useEffect(() => {
     getProcess();
-  });
+  },[]);
   return (
     <>
       <h3>Process view</h3>
 
       <ProcessCard>
         <span>
-          Process date:{" "}
-          <b>
-            {
-              (process.dateProcess = new Date(
-                process.dateProcess
-              ).toLocaleDateString())
-            }
-          </b>
+          Process date: <b> {process.dateProcess}</b>
         </span>
         <span>
           Process number: <b> {process.processNumber}</b>
@@ -55,7 +48,13 @@ export const ViewProcess = () => {
         <span>
           Judgment: <b> {process.judgment}</b>
         </span>
+        <span>
+          Status: <b> {process.status === true && 'Active'}</b>
+        </span>
       </ProcessCard>
+      <div>
+        Deal
+      </div>
     </>
   );
 };

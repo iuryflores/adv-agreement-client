@@ -40,6 +40,7 @@ export const DefendantProcess = ({ message, setMessage }) => {
         <span>{defendant.full_name}</span>
         <span>({defendant.cnpj})</span>
       </h3>
+      {lawSuit.length === 0 && <p>None process for this defendant was created!</p>}
       {lawSuit.map((process, index) => {
         return (
           <DefendantCard key={index} to={`/process/${process._id}`}>

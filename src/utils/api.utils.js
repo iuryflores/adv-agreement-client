@@ -3,7 +3,8 @@ import axios from "axios";
 class Api {
   constructor() {
     this.api = axios.create({
-      baseURL: "https://clumsy-wig-slug.cyclic.app/"
+      //baseURL: "https://clumsy-wig-slug.cyclic.app/"
+      baseURL: "http://localhost:5000/"
     });
     this.api.interceptors.request.use(
       (config) => {
