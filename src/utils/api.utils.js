@@ -154,6 +154,31 @@ class Api {
       throw error.response.data.msg;
     }
   };
+  deleteProcess = async (id) => {
+    try {
+      const { data } = await this.api.delete(`/process/${id}`);
+      console.log(data);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getDeals = async () => {
+    try {
+      const { data } = await this.api.get("/deals");
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getParcels = async () => {
+    try {
+      const { data } = await this.api.get("/parcels");
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
 }
 
 export default new Api();

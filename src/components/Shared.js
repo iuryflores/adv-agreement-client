@@ -37,7 +37,7 @@ export const Button = styled(Link)`
 `;
 
 export const MsgError = styled.div`
-width:fit-content;
+
   background-color: #fa8072;
   padding: 5px 20px;
   margin-bottom: 10px;

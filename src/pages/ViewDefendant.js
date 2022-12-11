@@ -7,7 +7,8 @@ import { ButtonView, MsgError } from "../components/Shared";
 export const ViewDefendant = ({ loading, setLoading }) => {
   const { id } = useParams();
   const [defendant, setDefendant] = useState("");
-  const [message, setMessage] = useState("");
+
+  const [error, setError] = useState(null)
 
   const navigate = useNavigate();
 
@@ -34,15 +35,16 @@ export const ViewDefendant = ({ loading, setLoading }) => {
     }
   };
 
-  const showMessage = (message) => {
-    setMessage(message);
+  const showMessage = (error) => {
+    setError(error);
     setTimeout(() => {
-      setMessage(message);
+      setError(error);
     }, 3000);
   };
   return !loading ? (
     <div className="wrap">
       <h3>Defendant page</h3>
+      {error !== null && <MsgError>{error}</MsgError>}
       <div
         style={{
           width: "90vw",
@@ -51,6 +53,7 @@ export const ViewDefendant = ({ loading, setLoading }) => {
           color: "white"
         }}
       >
+        
         <Link to={`/defendant-edit/${id}`}>
           <i className="bi bi-pencil-square"> </i>
         </Link>
@@ -68,7 +71,7 @@ export const ViewDefendant = ({ loading, setLoading }) => {
       </p>
       <ButtonView>DEALS</ButtonView>
       <ButtonView to={`/defendant/${id}/process`}>PROCESS</ButtonView>
-      {message !== "" && <MsgError>{message}</MsgError>}
+      
     </div>
   ) : (
     <div>Loading...</div>

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import api from "../utils/api.utils.js";
-import { ButtonView, ProcessCard, MsgSucess } from "../components/Shared.js";
+import { ButtonView, ProcessCard, MsgSucess, MsgError } from "../components/Shared.js";
 
 export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   const [process, setProcess] = useState(id);
   const [defendant, setDefendant] = useState("");
+  const [error, setError] = useState(null);
 
   const getProcess = async () => {
     try {
@@ -29,19 +32,49 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
       setMessage(null);
     }, 5000);
   }, [message]);
- 
-  
+
   let dateProcess = new Date(process.dateProcess).toLocaleDateString("pt-br", {
     day: "numeric",
     month: "numeric",
     year: "numeric"
   });
 
-  return !loading ? (
-    <>
-      {message && <MsgSucess>{message}</MsgSucess>}
-      <h3>Process view</h3>
+  const DeleteOneProcess = async () => {
+    try {
+      await api.deleteProcess(id);
+   console.log(id)
+    } catch (error) {
+      showMessage(error);
+    }
+  };
 
+  const showMessage = (error) => {
+    setError(error);
+    setTimeout(() => {
+      setError(error);
+    }, 3000);
+  };
+  return !loading ? (
+    <div className="wrap">
+      {error && <MsgError>{error}</MsgError>}
+      <h3>Process view</h3>
+      <div
+        style={{
+          width: "80vw",
+          display: "flex",
+          padding:  '0px 15px',
+          justifyContent: "flex-end",
+          color: "white"
+        }}
+      >
+        <Link to={`/defendant-edit/${id}`}>
+          <i className="bi bi-pencil-square"> </i>
+        </Link>
+        &nbsp;&nbsp;
+        <Link onClick={DeleteOneProcess}>
+          <i className="bi bi-trash3"> </i>
+        </Link>
+      </div>
       <ProcessCard>
         <span>
           Process date: <b> {dateProcess}</b>
@@ -75,7 +108,7 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
       <ButtonView to={`/process/${id}/add-deal`} style={{ marginTop: "50px" }}>
         Add Deal
       </ButtonView>
-    </>
+    </div>
   ) : (
     <div>loading...</div>
   );

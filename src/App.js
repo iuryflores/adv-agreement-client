@@ -13,7 +13,9 @@ import {
   DefendantProcess,
   ViewProcess,
   AddProcess,
-  AddDeal, Deals
+  AddDeal,
+  Deals,
+  Parcels
 } from "./pages";
 
 import Navbar from "./components/Navbar";
@@ -41,19 +43,45 @@ function App() {
         />
         <Route
           path="/process/:id"
-          element={<ViewProcess message={message} setMessage={setMessage} loading={loading} setLoading={setLoading} />}
+          element={
+            <ViewProcess
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
         />
         <Route
           path="/defendant/:id/add-process"
-          element={<AddProcess setMessage={setMessage}  loading={loading} setLoading={setLoading} />}
+          element={
+            <AddProcess
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
         />
         <Route
           path="/defendant"
-          element={<Defendant message={message} setMessage={setMessage}  loading={loading} setLoading={setLoading} />}
+          element={
+            <Defendant
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
         />
         <Route
           path="/add-defendant"
-          element={<AddDefendant setMessage={setMessage}  loading={loading} setLoading={setLoading} />}
+          element={
+            <AddDefendant
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
         />
         <Route
           path="/process/:id/add-deal"
@@ -62,21 +90,72 @@ function App() {
               setMessage={setMessage}
               defendant={defendant}
               setDefendant={setDefendant}
-              loading={loading} setLoading={setLoading} 
+              loading={loading}
+              setLoading={setLoading}
             />
           }
         />
 
-        <Route path="/defendant/:id" element={<ViewDefendant  loading={loading} setLoading={setLoading} />} />
+        <Route
+          path="/defendant/:id"
+          element={
+            <ViewDefendant
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
         <Route
           path="/defendant/:id/process"
           element={
-            <DefendantProcess message={message} setMessage={setMessage} loading={loading} setLoading={setLoading}  />
+            <DefendantProcess
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
           }
         />
-        <Route path="/defendant-edit/:id" element={<EditDefendant  loading={loading} setLoading={setLoading} />} />
-        <Route path="/process" element={<Process message={message} setMessage={setMessage} loading={loading} setLoading={setLoading}/>} />
-        <Route path="/deals" element={<Deals message={message} setMessage={setMessage} loading={loading} setLoading={setLoading}/>} />
+        <Route
+          path="/defendant-edit/:id"
+          element={<EditDefendant loading={loading} setLoading={setLoading} />}
+        />
+        <Route
+          path="/process"
+          element={
+            <Process
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
+        <Route
+          path="/deals"
+          element={
+            <Deals
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
+
+        <Route
+          path="/parcels"
+          element={
+            <Parcels
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
       </Routes>
       {location !== "/" && location !== "/user/auth/signup" && <Footer />}
     </div>

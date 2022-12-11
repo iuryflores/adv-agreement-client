@@ -12,3 +12,4 @@ export * from './AddProcess.js';
 export * from './AddDeal.js';
 export * from './Process.js';
 export * from './Deals.js';
+export * from './Parcels.js';

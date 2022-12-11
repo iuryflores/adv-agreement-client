@@ -33,25 +33,23 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
   return !loading ? (
     <div className="wrap">
       {message && <MsgSucess>{message}</MsgSucess>}
-      {!lawsuit !== "" ? (
-        <h3>All Process</h3>
-      ) : (
-        <h3> No defendant registred!</h3>
-      )}
-      <Button to="/add-defendant">+</Button>
+
+      <h3>All Process</h3>
+      {lawsuit.length <= 0 && <h3> No process registred!</h3>}
       {lawsuit.map((process, index) => (
         <DefendantCard to={`/process/${process._id}`} key={index}>
           <p>
             <i className="bi bi-folder"></i> Date:{" "}
             <b>
               {
-                (dateProcess = new Date(
-                  process.dateProcess
-                ).toLocaleDateString("pt-br", {
-                  day: "numeric",
-                  month: "numeric",
-                  year: "numeric"
-                }))
+                (dateProcess = new Date(process.dateProcess).toLocaleDateString(
+                  "pt-br",
+                  {
+                    day: "numeric",
+                    month: "numeric",
+                    year: "numeric"
+                  }
+                ))
               }
             </b>
           </p>

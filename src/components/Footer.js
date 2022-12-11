@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import logo from "../images/iury.png";
 
-
 const Footer = () => {
   return (
     <>
@@ -13,11 +12,11 @@ const Footer = () => {
       </footer>
       <div className="menu-footer">
         <ul>
-          <Link to="/process">
-            <i className="bi bi-folder"></i>PROCESS
-          </Link>
           <Link to="/defendant">
             <i className="bi bi-buildings-fill"></i>DEFENDANT
+          </Link>
+          <Link to="/process">
+            <i className="bi bi-folder"></i>PROCESS
           </Link>
           <Link to="/deals">
             <i className="bi bi-arrow-left-right"></i>DEALS

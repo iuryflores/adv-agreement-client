@@ -4,28 +4,32 @@ import api from "../utils/api.utils.js";
 import { MsgError } from "../components/Shared";
 import { useNavigate, useParams } from "react-router-dom";
 
-export const AddDeal = ({  setMessage }) => {
+export const AddDeal = ({ setMessage, loading, setLoading }) => {
   const { id } = useParams();
 
-  const [process, setProcess] = useState("");
   const [quotas, setQuotas] = useState("");
+  const [process, setProcess] = useState("");
+
+  const [defendant, setDefendant] = useState("");
 
   const [price, setPrice] = useState("");
   const [dueDate, setDueDate] = useState("");
 
   const [error, setError] = useState(null);
 
-  const navigator = useNavigate();
-
-  const getProcess = async () => {
+  const getDefendant = async () => {
     try {
       const data = await api.getProcessToAddDeal(id);
 
       setProcess(data);
-    } catch (error) {
-      console.log(error);
-    }
+      setDefendant(data.defendantId);
+    } catch (error) {}
   };
+
+  useEffect(() => {
+    getDefendant();
+  }, []);
+  const navigator = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +41,7 @@ export const AddDeal = ({  setMessage }) => {
           processId: id,
           price,
           dueDate,
-          defendantId: process.defendantId._id
+          defendantId: defendant
         },
         id
       );
@@ -53,15 +57,12 @@ export const AddDeal = ({  setMessage }) => {
       setError(error);
     }, 3000);
   };
-  useEffect(() => {
-    getProcess();
-  }, []);
 
   return (
     <div className="wrap">
       <h3>
-        Adding deal to process n.{" "}
-        {/*process.processNumber} of {process.defendantId.full_name} against {process.complainantName*/}
+        Adding deal to process n. {process.processNumber} {/*of{" "}*/}
+        {/*defendant.full_name} against {process.complainantName*/}
       </h3>
       {error !== null && <MsgError>{error}</MsgError>}
       <form onSubmit={handleSubmit}>
@@ -94,7 +95,6 @@ export const AddDeal = ({  setMessage }) => {
             setDueDate(e.target.value);
           }}
         />
-
         <button className="button" type="submit">
           Add Deal
         </button>
