@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import api from "../utils/api.utils.js";
-import { ButtonView, ProcessCard, MsgSucess, MsgError } from "../components/Shared.js";
+import { ButtonView, ProcessCard, MsgError, MsgSucess } from "../components/Shared.js";
 
 export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   const { id } = useParams();
@@ -42,7 +42,7 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   const DeleteOneProcess = async () => {
     try {
       await api.deleteProcess(id);
-   console.log(id)
+      navigate('/process')
     } catch (error) {
       showMessage(error);
     }
@@ -57,17 +57,18 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   return !loading ? (
     <div className="wrap">
       {error && <MsgError>{error}</MsgError>}
+      {message !== null && <MsgSucess>{message}</MsgSucess>}
       <h3>Process view</h3>
       <div
         style={{
           width: "80vw",
           display: "flex",
-          padding:  '0px 15px',
+          padding: "0px 15px",
           justifyContent: "flex-end",
           color: "white"
         }}
       >
-        <Link to={`/defendant-edit/${id}`}>
+        <Link to={`/process-edit/${id}`}>
           <i className="bi bi-pencil-square"> </i>
         </Link>
         &nbsp;&nbsp;

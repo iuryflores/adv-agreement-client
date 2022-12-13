@@ -87,6 +87,14 @@ class Api {
       throw error.response.data.msg;
     }
   };
+  editProcess = async (processData, id) => {
+    try {
+      const { data } = await this.api.put(`/process/${id}`, processData);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
   deleteDefendant = async (id) => {
     try {
       const { data } = await this.api.delete(`/defendant/${id}`);

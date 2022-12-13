@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import api from "../utils/api.utils";
-import { MsgSucess, Button, DefendantCard } from "../components/Shared";
+import { MsgSucess, DefendantCard } from "../components/Shared";
 
 export const Deals = ({ message, setMessage, loading, setLoading }) => {
   const [deals, setDeals] = useState([]);

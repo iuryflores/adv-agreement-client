@@ -15,7 +15,8 @@ import {
   AddProcess,
   AddDeal,
   Deals,
-  Parcels
+  Parcels,
+  EditProcess
 } from "./pages";
 
 import Navbar from "./components/Navbar";
@@ -120,12 +121,30 @@ function App() {
         />
         <Route
           path="/defendant-edit/:id"
-          element={<EditDefendant loading={loading} setLoading={setLoading} />}
+          element={
+            <EditDefendant
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
         />
         <Route
           path="/process"
           element={
             <Process
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
+        <Route
+          path="/process-edit/:id"
+          element={
+            <EditProcess
               message={message}
               setMessage={setMessage}
               loading={loading}
