@@ -16,7 +16,7 @@ import {
   AddDeal,
   Deals,
   Parcels,
-  EditProcess
+  EditProcess, ViewDeal
 } from "./pages";
 
 import Navbar from "./components/Navbar";
@@ -163,7 +163,17 @@ function App() {
             />
           }
         />
-
+<Route
+          path="/deal/:id"
+          element={
+            <ViewDeal
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
         <Route
           path="/parcels"
           element={
