@@ -179,9 +179,26 @@ class Api {
       throw error.response.data.msg;
     }
   };
+  getOneDeal = async (id) => {
+    try {
+      const { data } = await this.api.get(`/deal/${id}`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
   getParcels = async () => {
     try {
       const { data } = await this.api.get("/parcels");
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+
+  getProcessToDeal = async (id) => {
+    try {
+      const { data } = await this.api.get(`/deal/${id}`);
       return data;
     } catch (error) {
       throw error.response.data.msg;

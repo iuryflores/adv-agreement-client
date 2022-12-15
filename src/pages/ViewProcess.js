@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import api from "../utils/api.utils.js";
-import { ButtonView, ProcessCard, MsgError, MsgSucess } from "../components/Shared.js";
+import {
+  ButtonView,
+  ProcessCard,
+  MsgError,
+  MsgSucess,
+  DefendantCard
+} from "../components/Shared.js";
 
 export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   const { id } = useParams();
@@ -10,6 +16,7 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
 
   const [process, setProcess] = useState(id);
   const [defendant, setDefendant] = useState("");
+  const [deals, setDeals] = useState([]);
   const [error, setError] = useState(null);
 
   const getProcess = async () => {
@@ -23,8 +30,18 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
       console.log(error);
     }
   };
+
+  const getDeals = async () => {
+    try {
+      const data = await api.getDeals({ processId: id });
+      setDeals(data);
+      
+    } catch (error) {}
+  };
+
   useEffect(() => {
     getProcess();
+    getDeals();
   }, [id]);
 
   useEffect(() => {
@@ -42,7 +59,7 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   const DeleteOneProcess = async () => {
     try {
       await api.deleteProcess(id);
-      navigate('/process')
+      navigate("/process");
     } catch (error) {
       showMessage(error);
     }
@@ -56,12 +73,11 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   };
   return !loading ? (
     <div className="wrap">
-      {error && <MsgError>{error}</MsgError>}
+      {error !== null && <MsgError>{error}</MsgError>}
       {message !== null && <MsgSucess>{message}</MsgSucess>}
       <h3>Process view</h3>
       <div
         style={{
-          width: "80vw",
           display: "flex",
           padding: "0px 15px",
           justifyContent: "flex-end",
@@ -105,10 +121,28 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
           Status: <b> {process.status === true && "Active"}</b>
         </span>
       </ProcessCard>
-
-      <ButtonView to={`/process/${id}/add-deal`} style={{ marginTop: "50px" }}>
-        Add Deal
-      </ButtonView>
+      {!deals ? (
+        <ButtonView
+          to={`/process/${id}/add-deal`}
+          style={{ marginTop: "50px" }}
+        >
+          Add Deal
+        </ButtonView>
+      ) : (
+        <>
+          <h4>This process has the following deal:</h4>
+          {deals.map((deal, index) => (
+            <DefendantCard key={index} to={`/deal/${deal._id}`}>
+              <i className="bi bi-currency-dollar"></i>
+              <p>Total of parcels: {deal.quotas}</p>
+              <p>Total price: R$ {deal.price}</p>
+              <p></p>
+              <p></p>
+              <i className="bi bi-box-arrow-right"></i>
+            </DefendantCard>
+          ))}
+        </>
+      )}
     </div>
   ) : (
     <div>loading...</div>

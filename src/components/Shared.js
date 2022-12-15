@@ -89,7 +89,7 @@ export const ButtonView = styled(Link)`
 `;
 export const ProcessCard = styled.div`
   border: 1px solid white;
-  width:80vw;
+ 
   display:flex;
   flex-direction:column;
   align-items:flex-start;

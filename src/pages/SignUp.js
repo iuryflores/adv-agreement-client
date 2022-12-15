@@ -23,7 +23,6 @@ export const SignUp = ({ setMessage }) => {
     }
   };
   const showMessage = (error) => {
-    console.log(error);
     setError(error);
     setTimeout(() => {
       setError(error);
