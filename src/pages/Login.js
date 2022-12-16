@@ -30,7 +30,7 @@ export const Login = ({ message, setMessage }) => {
     setTimeout(() => {
       setMessage(null);
     }, 5000);
-  }, [message]);
+  }, [message, setMessage]);
   return (
     <div className="login">
       <h2>Welcome</h2>
