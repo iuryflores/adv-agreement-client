@@ -1,7 +1,7 @@
 import React from "react";
 
 import { LinkNav } from "./Shared";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -30,9 +30,18 @@ const Navbar = () => {
         </LinkNav>
         <span></span>
       </ul>
-      <Link style={{position:'absolute', right:'50px'}} onClick={logout}>
+      <button
+        style={{
+          position: "absolute",
+          right: "50px",
+          background: "none",
+          border: "none",
+          color: "#0f52ba"
+        }}
+        onClick={logout}
+      >
         Logout <i className="bi bi-box-arrow-right"></i>
-      </Link>
+      </button>
     </nav>
   );
 };

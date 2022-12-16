@@ -51,13 +51,13 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
           <p>
             Number: <b>{process.processNumber}</b>
           </p>
-          <p>
+          <p className="notShowMobile">
             Defendant: <b>{process.defendantId.full_name}</b>
           </p>
           <p>
             Complainant: <b>{process.complainantName}</b>
           </p>
-          <p>
+          <p className="notShowMobile">
             Judgment: <b>{process.judgment}</b>
           </p>
           <i className="bi bi-box-arrow-right"></i>

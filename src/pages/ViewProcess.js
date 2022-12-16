@@ -120,9 +120,7 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
         <span>
           Judgment: <b> {process.judgment}</b>
         </span>
-        <span>
-          Status: <b> {process.status === true && "Active"}</b>
-        </span>
+     
       </ProcessCard>
       {!deals ? (
         <ButtonView
@@ -141,10 +139,10 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
           {deals.map((deal, index) => (
             <DefendantCard key={index} to={`/deal/${deal._id}`}>
               <i className="bi bi-currency-dollar"></i>
-              <p>Total of parcels: {deal.quotas}</p>
-              <p>Total price: R$ {deal.price}</p>
-              <p></p>
-              <p></p>
+              <p>Total of parcels:<b> {deal.quotas}</b></p>
+              <p>Total price: <b>R$ {deal.price.toFixed(2).replace('.',',')}</b></p>
+              <p className="notShowMobile"></p>
+              <p className="notShowMobile"></p>
               <i className="bi bi-box-arrow-right"></i>
             </DefendantCard>
           ))}

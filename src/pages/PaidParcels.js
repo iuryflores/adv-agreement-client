@@ -65,8 +65,8 @@ export const PaidParcels = ({ message, setMessage, loading, setLoading }) => {
                 </b>
               </p>
             ) : (
-              <span>
-                Paid on:{" "}
+              <p>
+                Paid on:{" "}<b>
                 {new Date(parcel?.payDay.slice(0, -1)).toLocaleDateString(
                   "pt-br",
                   {
@@ -75,10 +75,10 @@ export const PaidParcels = ({ message, setMessage, loading, setLoading }) => {
                     year: "numeric"
                   }
                 )}
-              </span>
+              </b></p>
             )}
 
-            <span></span>
+            <span className="notShowMobile"></span>
             
               <div
                 style={{

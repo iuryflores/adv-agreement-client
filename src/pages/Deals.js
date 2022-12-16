@@ -20,12 +20,14 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
     };
     getDeals();
   }, [setLoading, setProcess]);
-  console.log(process);
+  console.log(process)
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);
     }, 5000);
   }, [message, setMessage]);
+
+
   return !loading ? (
     <div className="wrap">
       {message !== null && <MsgSucess>{message}</MsgSucess>}
@@ -35,29 +37,29 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
       {deals.map((deal, index) => (
         <DefendantCard to={`/deal/${deal._id}`} key={index}>
           <p>
-          <i className="bi bi-arrow-left-right"></i>
+            <i className="bi bi-arrow-left-right"></i>
           </p>
           <p>
             Process nº: <b>{deal?.processId?.processNumber}</b>
           </p>
-          <p>
+          <p className="notShowMobile">
             Defendant: <b>{deal.defendantId.full_name}</b>
           </p>
-          <p>
+          <p className="notShowMobile">
             Complainant: <b>{deal.processId.complainantName}</b>
           </p>
           <p>
             Total of quotas: <b>{deal.quotas}</b>
           </p>
           <p>
-            Price total: <b>R$ {deal.price.toFixed(2).replace('.',',')}</b>
+            Price total: <b>R$ {deal.price.toFixed(2).replace(".", ",")}</b>
           </p>
-          
+
           <i className="bi bi-box-arrow-right"></i>
         </DefendantCard>
       ))}
     </div>
   ) : (
-    <div>loading...</div>
+    <div>Loading...</div>
   );
 };

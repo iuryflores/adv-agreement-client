@@ -1,5 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
 .App {
   text-align: center;
   font-size: 1rem;
@@ -142,9 +143,11 @@ nav {
   justify-content: space-around;
 
 }
+
 ul {
   padding: 0;
 }
+
 .ul-top {
   display: flex;
   width: 40%;
@@ -158,10 +161,18 @@ ul {
 
 /*MOBILE*/
 @media screen and (max-width: 992px) {
+  p {
+    font-size: 0.9rem !important;
+  }
+
+  .notShowMobile {
+    display: none !important;
+  }
 
   nav {
     width: 100vw;
   }
+
   .menu-footer {
     display: flex;
     color: #0F52BA;

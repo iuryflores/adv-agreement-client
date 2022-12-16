@@ -97,7 +97,7 @@ export const Parcels = ({ message, setMessage, loading, setLoading }) => {
               </span>
             )}
 
-            <span></span>
+            <span className="notShowMobile"></span>
             {parcel?.payDay ? (
               <Link
                 style={{
@@ -122,7 +122,7 @@ export const Parcels = ({ message, setMessage, loading, setLoading }) => {
                   padding: "12px 30px"
                 }}
               >
-                Pay this parcel
+                Pay
               </Link>
             )}
             <span></span>

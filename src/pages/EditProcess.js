@@ -9,7 +9,6 @@ export const EditProcess = ({ setMessage }) => {
 
   const navigate = useNavigate();
 
-
   const [process, setProcess] = useState("");
   const [error, setError] = useState(null);
 
@@ -52,13 +51,24 @@ export const EditProcess = ({ setMessage }) => {
     }, 3000);
   };
 
+
+  let newDate = process?.dateProcess
+ 
+  newDate = new Date(newDate).toLocaleDateString(
+    "pt-br",
+    {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric"
+    }
+  );
+  console.log(newDate)
   return (
     <div>
       <h3>Editing process {}</h3>
       {error && <MsgError>{error}</MsgError>}
 
       <form onSubmit={handleSubmit} className="form-edit-process">
-        
         <p>
           Process number:
           <input
@@ -76,10 +86,10 @@ export const EditProcess = ({ setMessage }) => {
             className="form-control"
             name="dateProcess"
             value={dateProcess}
-            type='text'
-            onFocus={(e)=>(e.target.type='date')}
-            onBlur={(e)=>(e.target.type='text')}
-            placeholder={process.dateProcess}
+            type="text"
+            onFocus={(e) => (e.target.type = "date")}
+            onBlur={(e) => (e.target.type = "text")}
+            placeholder={newDate}
             onChange={(e) => setDateProcess(e.target.value)}
           />
         </p>
