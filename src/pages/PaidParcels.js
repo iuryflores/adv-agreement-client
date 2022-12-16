@@ -2,14 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import api from "../utils/api.utils";
 import { MsgSucess, ParceltCard, ButtonView } from "../components/Shared";
-import { Link } from "react-router-dom";
-export const Parcels = ({ message, setMessage, loading, setLoading }) => {
+
+
+export const PaidParcels = ({ message, setMessage, loading, setLoading }) => {
   const [parcels, setParcels] = useState([]);
 
   useEffect(() => {
     const getParcels = async () => {
       try {
-        const data = await api.getAllParcels();
+        const data = await api.getPaidParcels();
         setParcels(data);
         setLoading(false);
       } catch (error) {
@@ -19,14 +20,7 @@ export const Parcels = ({ message, setMessage, loading, setLoading }) => {
     getParcels();
   }, [loading, setLoading]);
 
-  const payParcel = async (parcelId) => {
-    try {
-      await api.payParcel(parcelId);
-      setLoading(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -37,27 +31,14 @@ export const Parcels = ({ message, setMessage, loading, setLoading }) => {
     <div className="wrap">
       {message && <MsgSucess>{message}</MsgSucess>}
 
-      <h3>All parcels</h3>
-      <ButtonView
-        to={`/parcels/paid`}
-        style={{ width: "fit-content", float: "right" }}
-      >
-        See paid parcels
+      <h3>All paid parcels</h3>
+      <ButtonView to={`/parcels`} style={{ width: "fit-content", float: "right" }}>
+        See unpaid parcels
       </ButtonView>
       {parcels.length <= 0 && <h3> No deal registred!</h3>}
-
       {parcels.map((parcel, index) => {
-        let today = new Date().toISOString().slice(0, -1);
-        let isBackgroundRed = parcel?.dueDate.slice(0, -1) < today;
-
         return (
-          <ParceltCard
-            key={index}
-            style={{
-              backgroundColor: isBackgroundRed ? "#FF3131" : "",
-              color: isBackgroundRed ? "white" : ""
-            }}
-          >
+          <ParceltCard key={index}>
             <i className="bi bi-currency-dollar"></i>
             <p>
               Parcel:
@@ -66,7 +47,7 @@ export const Parcels = ({ message, setMessage, loading, setLoading }) => {
               </b>
             </p>
             <p>
-              Price:<b>R$ {parcel.price.toFixed(2).replace(".", ",")}</b>
+              Price:<b> {parcel.price.toFixed(2).replace(".", ",")}</b>
             </p>
 
             {!parcel?.payDay ? (
@@ -98,39 +79,24 @@ export const Parcels = ({ message, setMessage, loading, setLoading }) => {
             )}
 
             <span></span>
-            {parcel?.payDay ? (
-              <Link
+            
+              <div
                 style={{
                   background: "green",
                   color: "white",
                   borderRadius: "5px",
-                  padding: "12px 30px"
+                  padding: "12px 25px"
                 }}
               >
                 Paid
-              </Link>
-            ) : (
-              <Link
-                onClick={() => {
-                  payParcel(parcel._id);
-                }}
-                style={{
-                  color: isBackgroundRed ? "white" : "",
-                  borderColor: isBackgroundRed ? "white" : "",
-                  border: "2px solid",
-                  borderRadius: "5px",
-                  padding: "12px 30px"
-                }}
-              >
-                Pay this parcel
-              </Link>
-            )}
+              </div>
+            
             <span></span>
           </ParceltCard>
         );
       })}
     </div>
   ) : (
-    <div>Loading...</div>
+    <div>loading...</div>
   );
 };

@@ -15,3 +15,6 @@ export * from './Deals.js';
 export * from './Parcels.js';
 export * from './EditProcess.js';
 export * from './ViewDeal.js';
+export * from './DefendantDeals.js';
+export * from './PaidParcels.js';
+

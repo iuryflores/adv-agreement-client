@@ -16,12 +16,12 @@ import {
   Deals,
   Parcels,
   EditProcess,
-  ViewDeal,
+  ViewDeal, DefendantDeals, PaidParcels
 } from "./pages/index.js";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { DefendantDeals } from "./pages/DefendantDeals";
+
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -97,7 +97,18 @@ function App() {
             />
           }
         />
-
+  <Route
+          path="/parcels/paid"
+          element={
+            <PaidParcels
+              setMessage={setMessage}
+              defendant={defendant}
+              setDefendant={setDefendant}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
         <Route
           path="/defendant/:id"
           element={

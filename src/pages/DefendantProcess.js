@@ -20,13 +20,13 @@ export const DefendantProcess = ({
       try {
         const data = await api.getOneDefendant(id);
         setDefendant(data);
-        setLoading(false);
+       
       } catch (error) {
         console.log(error);
       }
     };
     getDefendant();
-  }, [id, setLoading]);
+  }, [id]);
   useEffect(() => {
     const getAllProcessDefendant = async () => {
       try {

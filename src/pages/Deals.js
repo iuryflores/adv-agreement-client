@@ -47,14 +47,12 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
             Complainant: <b>{deal.processId.complainantName}</b>
           </p>
           <p>
-            Total de quotas: <b>{deal.quotas}</b>
+            Total of quotas: <b>{deal.quotas}</b>
           </p>
           <p>
             Price total: <b>R$ {deal.price.toFixed(2).replace('.',',')}</b>
           </p>
-          <p>
-            Status: <b>{deal.status === true ? "Active" : ""}</b>
-          </p>
+          
           <i className="bi bi-box-arrow-right"></i>
         </DefendantCard>
       ))}

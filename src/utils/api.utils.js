@@ -3,7 +3,7 @@ import axios from "axios";
 class Api {
   constructor() {
     this.api = axios.create({
-      baseURL: "https://clumsy-wig-slug.cyclic.app/",
+      baseURL: "https://clumsy-wig-slug.cyclic.app/"
       //baseURL: "http://localhost:5000/"
     });
     this.api.interceptors.request.use(
@@ -11,7 +11,7 @@ class Api {
         const token = localStorage.getItem("token");
         if (token) {
           config.headers = {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
           };
         }
         return config;
@@ -216,6 +216,14 @@ class Api {
   getAllParcels = async () => {
     try {
       const { data } = await this.api.get(`/parcels/`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getPaidParcels = async () => {
+    try {
+      const { data } = await this.api.get("/payments/paid");
       return data;
     } catch (error) {
       throw error.response.data.msg;
