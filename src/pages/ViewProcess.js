@@ -43,7 +43,7 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   useEffect(() => {
     getProcess();
     getDealProcess();
-  }, []);
+  }, [getDealProcess]);
 
   useEffect(() => {
     setTimeout(() => {

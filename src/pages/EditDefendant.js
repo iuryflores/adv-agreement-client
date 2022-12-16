@@ -20,7 +20,7 @@ export const EditDefendant = () => {
   };
   useEffect(() => {
     getOneDefendant();
-  }, []);
+  }, [getOneDefendant]);
 
   const navigate = useNavigate();
 

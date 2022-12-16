@@ -4,7 +4,7 @@ import api from "../utils/api.utils";
 import { useEffect, useState, useRef } from "react";
 import { ButtonView, MsgError } from "../components/Shared";
 
-export const EditProcess = ({ message, setMessage, loading, setLoading }) => {
+export const EditProcess = ({ setMessage }) => {
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -18,8 +18,6 @@ export const EditProcess = ({ message, setMessage, loading, setLoading }) => {
   const [subject, setSubject] = useState("");
   const [jurisdiction, setJurisdiction] = useState("");
   const [judgment, setJudgment] = useState("");
-
-  const [defendant, setDefendant] = useState();
 
   const getOneProcess = async () => {
     try {

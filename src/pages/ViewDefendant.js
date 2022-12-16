@@ -24,7 +24,7 @@ export const ViewDefendant = ({ loading, setLoading }) => {
 
   useEffect(() => {
     getOneDefendant();
-  }, []);
+  }, [getOneDefendant]);
 
   const DeleteOneDefendant = async () => {
     try {

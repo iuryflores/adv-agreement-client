@@ -27,7 +27,7 @@ export const ViewDeal = ({ message, setMessage, loading, setLoading }) => {
 
   useEffect(() => {
     getParcels();
-  }, []);
+  }, [getParcels]);
 
   useEffect(() => {
     setTimeout(() => {

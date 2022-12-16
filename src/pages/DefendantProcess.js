@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { DefendantCard, Button } from "../components/Shared";
 import { useParams } from "react-router-dom";
 
-export const DefendantProcess = ({ message, setMessage }) => {
+export const DefendantProcess = () => {
   const { id } = useParams();
 
   const [lawSuit, setLawSuit] = useState([]);
@@ -30,10 +30,10 @@ export const DefendantProcess = ({ message, setMessage }) => {
   };
   useEffect(() => {
     getDefendant();
-  }, []);
+  }, [getDefendant]);
   useEffect(() => {
     getAllProcessDefendant();
-  }, []);
+  }, [getAllProcessDefendant]);
   return (
     <div>
       <Button to={`/defendant/${id}/add-process`}>+</Button>

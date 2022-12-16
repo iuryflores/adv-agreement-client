@@ -1,12 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import api from "../utils/api.utils";
-import {
-  MsgError,
-  MsgSucess,
-  Button,
-  DefendantCard
-} from "../components/Shared";
+import { MsgSucess, DefendantCard } from "../components/Shared";
 
 export const Process = ({ message, setMessage, loading, setLoading }) => {
   const [lawsuit, setLawSuit] = useState([]);
@@ -23,7 +18,7 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
 
   useEffect(() => {
     getLawSuit();
-  }, []);
+  }, [getLawSuit]);
   let dateProcess;
   useEffect(() => {
     setTimeout(() => {

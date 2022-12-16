@@ -18,7 +18,7 @@ export const Defendant = ({ message, setMessage, loading, setLoading }) => {
 
   useEffect(() => {
     getDefendants();
-  }, []);
+  }, [getDefendants]);
 
   useEffect(() => {
     setTimeout(() => {
