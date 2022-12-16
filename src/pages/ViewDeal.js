@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import api from "../utils/api.utils.js";
 import {
-  ButtonView,
   ProcessCard,
   MsgError,
   MsgSucess,
-  DefendantCard
+  ParceltCard
 } from "../components/Shared.js";
 
 export const ViewDeal = ({ message, setMessage, loading, setLoading }) => {
@@ -14,44 +13,21 @@ export const ViewDeal = ({ message, setMessage, loading, setLoading }) => {
 
   const navigate = useNavigate();
 
-  const [deal, setDeal] = useState("");
-  const [defendant, setDefendant] = useState("");
-  const [process, setProcess] = useState("");
+  const [parcels, setParcels] = useState([]);
 
   const [error, setError] = useState(null);
 
-  const getDeal = async () => {
+  const getParcels = async () => {
     try {
-      const data = await api.getOneDeal(id);
-      setDeal(data);
-      setDefendant(data.defendantId);
-      setProcess(data.processId);
+      const data = await api.getParcels(id);
+      setParcels(data);
+      setLoading(false);
     } catch (error) {}
   };
 
-  const getProcess = async () => {
-    try {
-      const data = await api.getProcessToDeal(process);
-      setProcess(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const getDefendant = async () => {
-    try {
-      const data = await api.getOneDefendant(defendant);
-      setDefendant(data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getDeal();
-    getProcess();
-    getDefendant();
-  }, [id]);
+    getParcels();
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -59,15 +35,15 @@ export const ViewDeal = ({ message, setMessage, loading, setLoading }) => {
     }, 5000);
   }, [message]);
 
-  /*const DeleteOneProcess = async () => {
+  const DeleteOneDeal = async () => {
     try {
-      await api.deleteProcess(id);
+      await api.deleteDeal(id);
       navigate("/process");
     } catch (error) {
       showMessage(error);
     }
   };
-*/
+
   const showMessage = (error) => {
     setError(error);
     setTimeout(() => {
@@ -87,37 +63,53 @@ export const ViewDeal = ({ message, setMessage, loading, setLoading }) => {
           color: "white"
         }}
       >
-        <Link to={`/deal-edit/${id}`}>
-          <i className="bi bi-pencil-square"> </i>
-        </Link>
-        &nbsp;&nbsp;
-        <Link
-          onClick={
-            {
-              /*DeleteOneDeal*/
-            }
-          }
-        >
+        <Link onClick={DeleteOneDeal}>
           <i className="bi bi-trash3"> </i>
         </Link>
       </div>
       <ProcessCard>
         <span>
-          Number of quotas: <b> {deal.quotas}</b>
+          Number of quotas: <b> {parcels[0]?.dealId?.quotas}</b>
         </span>
         <span>
-          Total price: <b> {deal.price}</b>
+          Total price: <b> {parcels[0]?.dealId?.price}</b>
         </span>
         <span>
-          Process number: <b> {process.processNumber}</b>
+          Process number: <b> {parcels[0]?.dealId?.processId?.processNumber}</b>
         </span>
         <span>
-          Defendant: <b> {defendant.full_name}</b>
+          Defendant: <b> {parcels[0]?.dealId?.defendantId?.full_name}</b>
         </span>
         <span>
-          Complainant: <b> {process.complainantName}</b>
+          Complainant: <b> {parcels[0]?.dealId?.processId?.complainantName}</b>
         </span>
       </ProcessCard>
+      <div>
+        <h3>Parcels</h3>
+        {parcels.map((parcel, index) => {
+          return (
+            <ParceltCard key={index}>
+              <i className="bi bi-currency-dollar"></i>
+              <span>
+                Parcel: {parcel.quota}/{parcel.totalQuota}
+              </span>
+              <span>Price: {parcel.price}</span>
+              <span>Due date: {parcel.dueDate}</span>
+              <div
+                style={{
+                  background: "red",
+                  color: "white",
+                  borderRadius: "5px",
+                  padding: "2px 15px"
+                }}
+              >
+                Pay
+              </div>
+              <span></span>
+            </ParceltCard>
+          );
+        })}
+      </div>
     </div>
   ) : (
     <div>loading...</div>

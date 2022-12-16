@@ -95,6 +95,14 @@ class Api {
       throw error.response.data.msg;
     }
   };
+  editDeal = async (dealData, id) => {
+    try {
+      const { data } = await this.api.put(`/deal-edit/${id}`, dealData);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
   deleteDefendant = async (id) => {
     try {
       const { data } = await this.api.delete(`/defendant/${id}`);
@@ -140,15 +148,15 @@ class Api {
   };
   addDealToProcess = async (dealData, id) => {
     try {
-      const { data } = await this.api.post(`/process/${id}/add-deal`, dealData);
+      const { data } = await this.api.post(`/deal`, dealData);
       return data;
     } catch (error) {
       throw error.response.data.msg;
     }
   };
-  getProcessToAddDeal = async (id) => {
+  getProcessById = async (id) => {
     try {
-      const { data } = await this.api.get(`/process/${id}/add-deal`);
+      const { data } = await this.api.get(`/process/${id}`);
       return data;
     } catch (error) {
       throw error.response.data.msg;
@@ -179,6 +187,14 @@ class Api {
       throw error.response.data.msg;
     }
   };
+  getDealsById = async () => {
+    try {
+      const { data } = await this.api.get("/deals");
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
   getOneDeal = async (id) => {
     try {
       const { data } = await this.api.get(`/deal/${id}`);
@@ -187,9 +203,9 @@ class Api {
       throw error.response.data.msg;
     }
   };
-  getParcels = async () => {
+  getParcels = async (id) => {
     try {
-      const { data } = await this.api.get("/parcels");
+      const { data } = await this.api.get(`/parcels/bydeal/${id}`);
       return data;
     } catch (error) {
       throw error.response.data.msg;
@@ -199,6 +215,22 @@ class Api {
   getProcessToDeal = async (id) => {
     try {
       const { data } = await this.api.get(`/deal/${id}`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getDealProcess = async (id) => {
+    try {
+      const { data } = await this.api.get(`/deal/process/${id}`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  deleteDeal = async (id) => {
+    try {
+      const { data } = await this.api.delete(`/deal/${id}`);
       return data;
     } catch (error) {
       throw error.response.data.msg;

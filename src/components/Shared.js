@@ -70,6 +70,23 @@ export const DefendantCard = styled(Link)`
     flex-direction: column;
   }
 `;
+export const ParceltCard = styled.div`
+  border: 1px solid #4682b4;
+  padding: 10px 15px;
+  background-color: aliceblue;
+  color: #0f52ba;
+  display: flex;
+  width: 90vw;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  margin-top: 5px;
+  border-radius: 10px;
+  p {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 export const ButtonView = styled(Link)`
   background-color: aliceblue;
   padding: 10px 20px;

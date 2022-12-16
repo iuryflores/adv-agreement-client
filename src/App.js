@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   Login,
   Process,
-  Home,
   Defendant,
   AddDefendant,
   ViewDefendant,
@@ -16,11 +15,13 @@ import {
   AddDeal,
   Deals,
   Parcels,
-  EditProcess, ViewDeal
+  EditProcess,
+  ViewDeal
 } from "./pages";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -163,7 +164,7 @@ function App() {
             />
           }
         />
-<Route
+        <Route
           path="/deal/:id"
           element={
             <ViewDeal
@@ -174,6 +175,7 @@ function App() {
             />
           }
         />
+       
         <Route
           path="/parcels"
           element={

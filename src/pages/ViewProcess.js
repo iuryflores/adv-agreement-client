@@ -31,18 +31,19 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
     }
   };
 
-  const getDeals = async () => {
+  const getDealProcess = async () => {
     try {
-      const data = await api.getDeals({ processId: id });
+      const data = await api.getDealProcess(id);
       setDeals(data);
-      
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getProcess();
-    getDeals();
-  }, [id]);
+    getDealProcess();
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -130,7 +131,11 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
         </ButtonView>
       ) : (
         <>
-          <h4>This process has the following deal:</h4>
+          {deals.length <= 0 ? (
+            <ButtonView to={`/process/${id}/add-deal`}>Add deal</ButtonView>
+          ) : (
+            <h4>This process has the following deal:</h4>
+          )}
           {deals.map((deal, index) => (
             <DefendantCard key={index} to={`/deal/${deal._id}`}>
               <i className="bi bi-currency-dollar"></i>

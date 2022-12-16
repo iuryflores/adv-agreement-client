@@ -19,13 +19,15 @@ export const AddDeal = ({ setMessage, loading, setLoading }) => {
 
   const getDefendant = async () => {
     try {
-      const data = await api.getProcessToAddDeal(id);
+      const data = await api.getProcessById(id);
 
       setProcess(data);
       setDefendant(data.defendantId);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  console.log(defendant);
   useEffect(() => {
     getDefendant();
   }, []);
