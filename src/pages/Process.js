@@ -6,8 +6,6 @@ import { MsgSucess, DefendantCard } from "../components/Shared";
 export const Process = ({ message, setMessage, loading, setLoading }) => {
   const [lawsuit, setLawSuit] = useState([]);
 
-  
-
   useEffect(() => {
     const getLawSuit = async () => {
       try {
@@ -35,18 +33,16 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
       {lawsuit.map((process, index) => (
         <DefendantCard to={`/process/${process._id}`} key={index}>
           <p>
-            <i className="bi bi-folder"></i> Date:{" "}
+            <i className="bi bi-folder"></i>
+          </p>
+          <p>
+            Date:{" "}
             <b>
-              {
-                (new Date(process.dateProcess).toLocaleDateString(
-                  "pt-br",
-                  {
-                    day: "numeric",
-                    month: "numeric",
-                    year: "numeric"
-                  }
-                ))
-              }
+              {new Date(process.dateProcess.slice(0,-1)).toLocaleDateString("pt-br", {
+                day: "numeric",
+                month: "numeric",
+                year: "numeric",
+              })}
             </b>
           </p>
           <p>
@@ -57,6 +53,9 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
           </p>
           <p>
             Complainant: <b>{process.complainantName}</b>
+          </p>
+          <p>
+            Judgment: <b>{process.judgment}</b>
           </p>
           <i className="bi bi-box-arrow-right"></i>
         </DefendantCard>

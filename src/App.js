@@ -17,7 +17,7 @@ import {
   Parcels,
   EditProcess,
   ViewDeal
-} from "./pages";
+} from "./pages/index.js";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";

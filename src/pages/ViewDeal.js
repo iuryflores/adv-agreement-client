@@ -71,7 +71,7 @@ export const ViewDeal = ({ message, setMessage, loading, setLoading }) => {
           Number of quotas: <b> {parcels[0]?.dealId?.quotas}</b>
         </span>
         <span>
-          Total price: <b> {parcels[0]?.dealId?.price}</b>
+          Total price: <b>R$ {parcels[0]?.dealId?.price.toFixed(2).replace('.',',')}</b>
         </span>
         <span>
           Process number: <b> {parcels[0]?.dealId?.processId?.processNumber}</b>
@@ -92,8 +92,12 @@ export const ViewDeal = ({ message, setMessage, loading, setLoading }) => {
               <span>
                 Parcel: {parcel.quota}/{parcel.totalQuota}
               </span>
-              <span>Price: {parcel.price}</span>
-              <span>Due date: {parcel.dueDate}</span>
+              <span>Price: {parcel.price.toFixed(2).replace('.',',')}</span>
+              <span>Due date: {new Date(parcel?.dueDate.slice(0,-1)).toLocaleDateString("pt-br", {
+                day: "numeric",
+                month: "numeric",
+                year: "numeric",
+              })}</span>
               <div
                 style={{
                   background: "red",

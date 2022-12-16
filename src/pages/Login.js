@@ -15,7 +15,7 @@ export const Login = ({ message, setMessage }) => {
     e.preventDefault();
     try {
       await api.login({ email, password });
-      navigate("/home");
+      navigate("/process");
     } catch (error) {
       showMessage(error);
     }

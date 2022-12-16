@@ -5,7 +5,7 @@ import { MsgSucess, DefendantCard } from "../components/Shared";
 
 export const Deals = ({ message, setMessage, loading, setLoading }) => {
   const [deals, setDeals] = useState([]);
-  const [setProcess] = useState("");
+  const [process, setProcess] = useState("");
 
   useEffect(() => {
     const getDeals = async () => {
@@ -20,6 +20,7 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
     };
     getDeals();
   }, [setLoading, setProcess]);
+  console.log(process);
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);
@@ -37,6 +38,9 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
             <i className="bi bi-folder"></i>
           </p>
           <p>
+            Process nº: <b>{deal?.processId?.processNumber}</b>
+          </p>
+          <p>
             Defendant: <b>{deal.defendantId.full_name}</b>
           </p>
           <p>
@@ -46,7 +50,7 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
             Total de quotas: <b>{deal.quotas}</b>
           </p>
           <p>
-            Price total: <b>{deal.price}</b>
+            Price total: <b>R$ {deal.price.toFixed(2).replace('.',',')}</b>
           </p>
           <p>
             Status: <b>{deal.status === true ? "Active" : ""}</b>
