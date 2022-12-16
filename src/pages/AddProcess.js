@@ -53,7 +53,7 @@ export const AddProcess = ({ setMessage }) => {
   };
   useEffect(() => {
     getDefendant();
-  }, []);
+  }, [getDefendant]);
   return (
     <div className="wrap">
       <h3>Adding process of {defendant.full_name}</h3>

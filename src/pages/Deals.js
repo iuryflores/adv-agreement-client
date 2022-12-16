@@ -5,7 +5,7 @@ import { MsgSucess, DefendantCard } from "../components/Shared";
 
 export const Deals = ({ message, setMessage, loading, setLoading }) => {
   const [deals, setDeals] = useState([]);
-  const [process, setProcess] = useState("");
+  const [ setProcess] = useState("");
 
   const getDeals = async () => {
     try {
@@ -20,7 +20,7 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
 
   useEffect(() => {
     getDeals();
-  }, []);
+  }, [getDeals]);
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);

@@ -30,7 +30,7 @@ export const AddDeal = ({ setMessage, loading, setLoading }) => {
   console.log(defendant);
   useEffect(() => {
     getDefendant();
-  }, []);
+  }, [getDefendant]);
   const navigator = useNavigate();
 
   const handleSubmit = async (e) => {
