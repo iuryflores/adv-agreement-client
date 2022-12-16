@@ -80,6 +80,7 @@ class Api {
       throw error.response.data.msg;
     }
   };
+
   editDefendant = async (defendantData, id) => {
     try {
       const { data } = await this.api.put(`/defendant/${id}`, defendantData);

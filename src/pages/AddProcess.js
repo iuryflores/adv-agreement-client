@@ -15,28 +15,8 @@ export const AddProcess = ({ setMessage }) => {
   const [judgment, setJudgment] = useState("");
   const [error, setError] = useState("");
 
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await api.addDefendantProcess(
-        {
-          dateProcess,
-          processNumber,
-          complainantName,
-          subject,
-          jurisdiction,
-          judgment
-        },
-        id
-      );
-      setMessage("Process created successfuly.");
-      navigator(`/defendant/${id}/process`);
-    } catch (error) {
-      showMessage(error);
-    }
-  };
   const showMessage = (error) => {
     setError(error);
     setTimeout(() => {
@@ -54,6 +34,27 @@ export const AddProcess = ({ setMessage }) => {
     };
     getDefendant();
   }, [id]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await api.addDefendantProcess(
+        {
+          dateProcess,
+          processNumber,
+          complainantName,
+          subject,
+          jurisdiction,
+          judgment,
+        },
+        id
+      );
+      setMessage("Process created successfuly.");
+      navigate(`/defendant/${id}/process`);
+    } catch (error) {
+      showMessage(error);
+    }
+  };
   return (
     <div className="wrap">
       <h3>Adding process of {defendant.full_name}</h3>

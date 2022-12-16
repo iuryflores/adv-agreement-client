@@ -13,7 +13,7 @@ export const DefendantDeals = ({ loading, setLoading }) => {
   useEffect(() => {
     const getDefendant = async () => {
       try {
-        const data = await api.getOneDefendant(id);
+        const data = await api.getOneDefendantDeals(id);
         setDefendant(data);
         setLoading(false);
       } catch (error) {
@@ -48,7 +48,6 @@ export const DefendantDeals = ({ loading, setLoading }) => {
         return (
           <DefendantCard key={index} to={`/deal/${deal._id}`}>
             <i className="bi bi-arrow-left-right"></i>
-
             <p>
               Process number: <b> {deal?.processId?.processNumber}</b>
             </p>
@@ -64,7 +63,7 @@ export const DefendantDeals = ({ loading, setLoading }) => {
             <p>
               Price total: <b>{deal?.price.toFixed(2).replace(".", ",")}</b>
             </p>
-            <i className="bi bi-box-arrow-right"></i>
+            <i className="bi bi-box-arrow-in-right"></i>
           </DefendantCard>
         );
       })}

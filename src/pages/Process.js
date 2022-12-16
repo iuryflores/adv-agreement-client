@@ -26,7 +26,7 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
   }, [message, setMessage]);
   return !loading ? (
     <div className="wrap">
-      {message && <MsgSucess>{message}</MsgSucess>}
+      {message !== null && <MsgSucess>{message}</MsgSucess>}
 
       <h3>All Process</h3>
       {lawsuit.length <= 0 && <h3> No process registred!</h3>}
@@ -38,11 +38,14 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
           <p>
             Date:{" "}
             <b>
-              {new Date(process.dateProcess.slice(0,-1)).toLocaleDateString("pt-br", {
-                day: "numeric",
-                month: "numeric",
-                year: "numeric",
-              })}
+              {new Date(process.dateProcess.slice(0, -1)).toLocaleDateString(
+                "pt-br",
+                {
+                  day: "numeric",
+                  month: "numeric",
+                  year: "numeric",
+                }
+              )}
             </b>
           </p>
           <p>

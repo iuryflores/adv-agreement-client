@@ -1,10 +1,15 @@
 import React from "react";
 import api from "../utils/api.utils";
 import { useState, useEffect } from "react";
-import { DefendantCard, Button } from "../components/Shared";
+import { DefendantCard, Button, MsgSucess } from "../components/Shared";
 import { useParams } from "react-router-dom";
 
-export const DefendantProcess = () => {
+export const DefendantProcess = ({
+  message,
+  setMessage,
+  loading,
+  setLoading,
+}) => {
   const { id } = useParams();
 
   const [lawSuit, setLawSuit] = useState([]);
@@ -15,27 +20,30 @@ export const DefendantProcess = () => {
       try {
         const data = await api.getOneDefendant(id);
         setDefendant(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     getDefendant();
-  }, [id]);
+  }, [id, setLoading]);
   useEffect(() => {
     const getAllProcessDefendant = async () => {
       try {
         const data = await api.getDefendantProcess(id);
 
         setLawSuit(data);
+        setLoading(false);
       } catch (error) {
         console.log(error, "Error to get defendants");
       }
     };
     getAllProcessDefendant();
-  }, [id]);
-  return (
+  }, [id, setLoading]);
+  return !loading ? (
     <div>
       <Button to={`/defendant/${id}/add-process`}>+</Button>
+      {message !== null && <MsgSucess>{message}</MsgSucess>}
       <h3 style={{ display: "flex", flexDirection: "column" }}>
         <span>All process from</span>
         <span>{defendant.full_name}</span>
@@ -54,7 +62,7 @@ export const DefendantProcess = () => {
                 {new Date(process.dateProcess).toLocaleDateString("pt-br", {
                   day: "numeric",
                   month: "numeric",
-                  year: "numeric"
+                  year: "numeric",
                 })}
               </b>
             </p>
@@ -69,5 +77,7 @@ export const DefendantProcess = () => {
         );
       })}
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };

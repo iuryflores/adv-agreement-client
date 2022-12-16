@@ -18,7 +18,7 @@ export const Parcels = ({ message, setMessage, loading, setLoading }) => {
     };
     getParcels();
   }, [loading, setLoading]);
- 
+
   const payParcel = async (parcelId) => {
     try {
       await api.payParcel(parcelId);
@@ -43,23 +43,30 @@ export const Parcels = ({ message, setMessage, loading, setLoading }) => {
         return (
           <ParceltCard key={index}>
             <i className="bi bi-currency-dollar"></i>
-            <span>
-              Parcel: {parcel.quota}/{parcel.totalQuota}
-            </span>
-            <span>Price: {parcel.price.toFixed(2).replace(".", ",")}</span>
+            <p>
+              Parcel:
+              <b>
+                {parcel.quota}/{parcel.totalQuota}
+              </b>
+            </p>
+            <p>
+              Price:<b> {parcel.price.toFixed(2).replace(".", ",")}</b>
+            </p>
 
             {!parcel?.payDay ? (
-              <span>
+              <p>
                 Due date:{" "}
-                {new Date(parcel?.dueDate.slice(0, -1)).toLocaleDateString(
-                  "pt-br",
-                  {
-                    day: "numeric",
-                    month: "numeric",
-                    year: "numeric",
-                  }
-                )}
-              </span>
+                <b>
+                  {new Date(parcel?.dueDate.slice(0, -1)).toLocaleDateString(
+                    "pt-br",
+                    {
+                      day: "numeric",
+                      month: "numeric",
+                      year: "numeric",
+                    }
+                  )}
+                </b>
+              </p>
             ) : (
               <span>
                 Paid on:{" "}

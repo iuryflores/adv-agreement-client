@@ -28,14 +28,14 @@ export const Deals = ({ message, setMessage, loading, setLoading }) => {
   }, [message, setMessage]);
   return !loading ? (
     <div className="wrap">
-      {message && <MsgSucess>{message}</MsgSucess>}
+      {message !== null && <MsgSucess>{message}</MsgSucess>}
 
       <h3>All Deals</h3>
       {deals.length <= 0 && <h3> No deal registred!</h3>}
       {deals.map((deal, index) => (
         <DefendantCard to={`/deal/${deal._id}`} key={index}>
           <p>
-            <i className="bi bi-folder"></i>
+          <i className="bi bi-arrow-left-right"></i>
           </p>
           <p>
             Process nº: <b>{deal?.processId?.processNumber}</b>
