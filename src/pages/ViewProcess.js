@@ -42,6 +42,8 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
 
   useEffect(() => {
     getProcess();
+  }, [getProcess]);
+  useEffect(() => {
     getDealProcess();
   }, [getDealProcess]);
 
