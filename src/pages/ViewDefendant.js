@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import api from "../utils/api.utils";
 import { useEffect, useState } from "react";
-import { ButtonView, MsgError } from "../components/Shared";
+import { ButtonView, MsgError, ProcessCard } from "../components/Shared";
 
 export const ViewDefendant = ({ loading, setLoading }) => {
   const { id } = useParams();
@@ -49,7 +49,7 @@ export const ViewDefendant = ({ loading, setLoading }) => {
           width: "90vw",
           display: "flex",
           justifyContent: "flex-end",
-          color: "white"
+          color: "white",
         }}
       >
         <Link to={`/defendant-edit/${id}`}>
@@ -60,15 +60,17 @@ export const ViewDefendant = ({ loading, setLoading }) => {
           <i className="bi bi-trash3"> </i>
         </Link>
       </div>
+      <ProcessCard style={{marginBottom:'50px', padding:'20px 15px'}}>
+        <span>
+          Corporate name: <b>{defendant.full_name}</b>
+        </span>
+        <span>
+          CNPJ: <b>{defendant.cnpj}</b>{" "}
+        </span>
+      </ProcessCard>
 
-      <p>
-        Corporate name: <b>{defendant.full_name}</b>{" "}
-      </p>
-      <p>
-        CNPJ: <b>{defendant.cnpj}</b>{" "}
-      </p>
-      <ButtonView>DEALS</ButtonView>
       <ButtonView to={`/defendant/${id}/process`}>PROCESS</ButtonView>
+      <ButtonView to={`/defendant/${id}/deals`}>DEALS</ButtonView>
     </div>
   ) : (
     <div>Loading...</div>

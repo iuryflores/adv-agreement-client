@@ -36,7 +36,7 @@ export const Defendant = ({ message, setMessage, loading, setLoading }) => {
             <i className="bi bi-buildings"></i> <b>{defendant.full_name}</b> -
             (CNPJ: {defendant.cnpj})
           </span>
-          <i className="bi bi-box-arrow-right"></i>
+          <i className="bi bi-box-arrow-in-right"></i>
         </DefendantCard>
       ))}
     </div>

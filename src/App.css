@@ -140,11 +140,14 @@ nav {
   justify-content: space-around;
 
 }
-
+ul {
+  padding: 0;
+}
 .ul-top {
   display: flex;
   width: 40%;
   justify-content: space-around;
+  align-items: center;
 }
 
 .h3 {

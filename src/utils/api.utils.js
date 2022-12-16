@@ -3,7 +3,7 @@ import axios from "axios";
 class Api {
   constructor() {
     this.api = axios.create({
-      baseURL: "https://clumsy-wig-slug.cyclic.app/"
+      baseURL: "https://clumsy-wig-slug.cyclic.app/",
       //baseURL: "http://localhost:5000/"
     });
     this.api.interceptors.request.use(
@@ -11,7 +11,7 @@ class Api {
         const token = localStorage.getItem("token");
         if (token) {
           config.headers = {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           };
         }
         return config;
@@ -39,6 +39,7 @@ class Api {
       throw error.response.data.msg;
     }
   };
+
   signUp = async (signUpInfo) => {
     try {
       const { data } = await this.api.post("/user/auth/signup", signUpInfo);
@@ -211,7 +212,22 @@ class Api {
       throw error.response.data.msg;
     }
   };
-
+  getAllParcels = async () => {
+    try {
+      const { data } = await this.api.get(`/parcels/`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  payParcel = async (parcelId) => {
+    try {
+      const { data } = await this.api.put(`/payment/pay/${parcelId}`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
   getProcessToDeal = async (id) => {
     try {
       const { data } = await this.api.get(`/deal/${id}`);
@@ -223,6 +239,14 @@ class Api {
   getDealProcess = async (id) => {
     try {
       const { data } = await this.api.get(`/deal/process/${id}`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getDefendantDeals = async (defendantId) => {
+    try {
+      const { data } = await this.api.get(`/deal/defendant/${defendantId}`);
       return data;
     } catch (error) {
       throw error.response.data.msg;

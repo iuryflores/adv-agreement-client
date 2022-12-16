@@ -9,6 +9,7 @@ export const EditProcess = ({ setMessage }) => {
 
   const navigate = useNavigate();
 
+
   const [process, setProcess] = useState("");
   const [error, setError] = useState(null);
 
@@ -57,16 +58,7 @@ export const EditProcess = ({ setMessage }) => {
       {error && <MsgError>{error}</MsgError>}
 
       <form onSubmit={handleSubmit} className="form-edit-process">
-        <p>
-          Process date:
-          <input
-            className="form-control"
-            type="date"
-            name="dateProcess"
-            value={dateProcess}
-            onChange={(e) => setDateProcess(e.target.value)}
-          />
-        </p>
+        
         <p>
           Process number:
           <input
@@ -78,7 +70,19 @@ export const EditProcess = ({ setMessage }) => {
             onChange={(e) => setProcessNumber(e.target.value)}
           />
         </p>
-
+        <p>
+          Process date:
+          <input
+            className="form-control"
+            name="dateProcess"
+            value={dateProcess}
+            type='text'
+            onFocus={(e)=>(e.target.type='date')}
+            onBlur={(e)=>(e.target.type='text')}
+            placeholder={process.dateProcess}
+            onChange={(e) => setDateProcess(e.target.value)}
+          />
+        </p>
         <p>
           Complainant name:
           <input

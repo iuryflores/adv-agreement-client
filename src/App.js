@@ -16,12 +16,12 @@ import {
   Deals,
   Parcels,
   EditProcess,
-  ViewDeal
+  ViewDeal,
 } from "./pages/index.js";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import { DefendantDeals } from "./pages/DefendantDeals";
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -121,6 +121,17 @@ function App() {
           }
         />
         <Route
+          path="/defendant/:id/deals"
+          element={
+            <DefendantDeals
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
+        <Route
           path="/defendant-edit/:id"
           element={
             <EditDefendant
@@ -175,7 +186,7 @@ function App() {
             />
           }
         />
-       
+
         <Route
           path="/parcels"
           element={

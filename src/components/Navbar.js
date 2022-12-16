@@ -1,8 +1,15 @@
 import React from "react";
 
 import { LinkNav } from "./Shared";
+import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <nav>
       <h3>
@@ -21,7 +28,11 @@ const Navbar = () => {
         <LinkNav to="parcels">
           <i className="bi bi-currency-dollar"></i> PARCELS
         </LinkNav>
+        <span></span>
       </ul>
+      <Link style={{position:'absolute', right:'50px'}} onClick={logout}>
+        Logout <i className="bi bi-box-arrow-right"></i>
+      </Link>
     </nav>
   );
 };

@@ -32,7 +32,6 @@ export const AddDeal = ({ setMessage, loading, setLoading }) => {
     getDefendant();
   }, [id]);
 
-  
   const navigator = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -45,7 +44,7 @@ export const AddDeal = ({ setMessage, loading, setLoading }) => {
           processId: id,
           price,
           dueDate,
-          defendantId: defendant
+          defendantId: defendant,
         },
         id
       );
@@ -64,10 +63,7 @@ export const AddDeal = ({ setMessage, loading, setLoading }) => {
 
   return (
     <div className="wrap">
-      <h3>
-        Adding deal to process n. {process.processNumber} {/*of{" "}*/}
-        {/*defendant.full_name} against {process.complainantName*/}
-      </h3>
+      <h3>Adding deal to process n. {process.processNumber}</h3>
       {error !== null && <MsgError>{error}</MsgError>}
       <form onSubmit={handleSubmit}>
         <label>How many quotas: </label>
