@@ -17,23 +17,22 @@ export const ViewDeal = ({ message, setMessage, loading, setLoading }) => {
 
   const [error, setError] = useState(null);
 
-  const getParcels = async () => {
-    try {
-      const data = await api.getParcels(id);
-      setParcels(data);
-      setLoading(false);
-    } catch (error) {}
-  };
-
   useEffect(() => {
+    const getParcels = async () => {
+      try {
+        const data = await api.getParcels(id);
+        setParcels(data);
+        setLoading(false);
+      } catch (error) {}
+    };
     getParcels();
-  }, [getParcels]);
+  }, [id, setLoading]);
 
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);
     }, 5000);
-  }, [message]);
+  }, [message, setMessage]);
 
   const DeleteOneDeal = async () => {
     try {

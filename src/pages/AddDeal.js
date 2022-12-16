@@ -17,20 +17,22 @@ export const AddDeal = ({ setMessage, loading, setLoading }) => {
 
   const [error, setError] = useState(null);
 
-  const getDefendant = async () => {
-    try {
-      const data = await api.getProcessById(id);
-
-      setProcess(data);
-      setDefendant(data.defendantId);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  console.log(defendant);
   useEffect(() => {
+    const getDefendant = async () => {
+      try {
+        const data = await api.getProcessById(id);
+
+        setProcess(data);
+        setDefendant(data.defendantId);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getDefendant();
-  }, [getDefendant]);
+  }, [id]);
+
+  
   const navigator = useNavigate();
 
   const handleSubmit = async (e) => {

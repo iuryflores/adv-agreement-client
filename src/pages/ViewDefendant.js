@@ -8,23 +8,22 @@ export const ViewDefendant = ({ loading, setLoading }) => {
   const { id } = useParams();
   const [defendant, setDefendant] = useState("");
 
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
-  const getOneDefendant = async () => {
-    try {
-      const data = await api.getOneDefendant(id);
-      setDefendant(data);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const getOneDefendant = async () => {
+      try {
+        const data = await api.getOneDefendant(id);
+        setDefendant(data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     getOneDefendant();
-  }, [getOneDefendant]);
+  }, [id, setLoading]);
 
   const DeleteOneDefendant = async () => {
     try {
@@ -53,7 +52,6 @@ export const ViewDefendant = ({ loading, setLoading }) => {
           color: "white"
         }}
       >
-        
         <Link to={`/defendant-edit/${id}`}>
           <i className="bi bi-pencil-square"> </i>
         </Link>
@@ -71,7 +69,6 @@ export const ViewDefendant = ({ loading, setLoading }) => {
       </p>
       <ButtonView>DEALS</ButtonView>
       <ButtonView to={`/defendant/${id}/process`}>PROCESS</ButtonView>
-      
     </div>
   ) : (
     <div>Loading...</div>

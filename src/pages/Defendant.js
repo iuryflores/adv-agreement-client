@@ -6,25 +6,24 @@ import { Button, DefendantCard, MsgSucess } from "../components/Shared";
 export const Defendant = ({ message, setMessage, loading, setLoading }) => {
   const [defendants, setDefendants] = useState([]);
 
-  const getDefendants = async () => {
-    try {
-      const data = await apiUtils.getDefendants();
-      setDefendants(data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error, "Error to get defendants");
-    }
-  };
-
   useEffect(() => {
+    const getDefendants = async () => {
+      try {
+        const data = await apiUtils.getDefendants();
+        setDefendants(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error, "Error to get defendants");
+      }
+    };
     getDefendants();
-  }, [getDefendants]);
+  }, [setLoading]);
 
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);
     }, 5000);
-  }, [message]);
+  }, [message, setMessage]);
   return !loading ? (
     <div className="wrap">
       {message && <MsgSucess>{message}</MsgSucess>}

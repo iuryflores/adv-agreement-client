@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../utils/api.utils";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { ButtonView, MsgError } from "../components/Shared";
 
 export const EditProcess = ({ setMessage }) => {
@@ -19,18 +19,18 @@ export const EditProcess = ({ setMessage }) => {
   const [jurisdiction, setJurisdiction] = useState("");
   const [judgment, setJudgment] = useState("");
 
-  const getOneProcess = async () => {
-    try {
-      const data = await api.getProcess(id);
-      setProcess(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const getOneProcess = async () => {
+      try {
+        const data = await api.getProcess(id);
+        setProcess(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getOneProcess();
-  }, []);
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

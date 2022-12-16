@@ -6,25 +6,26 @@ import { MsgSucess, DefendantCard } from "../components/Shared";
 export const Process = ({ message, setMessage, loading, setLoading }) => {
   const [lawsuit, setLawSuit] = useState([]);
 
-  const getLawSuit = async () => {
-    try {
-      const data = await api.getLawSuit();
-      setLawSuit(data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error, "Error to get law suit");
-    }
-  };
+  
 
   useEffect(() => {
+    const getLawSuit = async () => {
+      try {
+        const data = await api.getLawSuit();
+        setLawSuit(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error, "Error to get law suit");
+      }
+    };
     getLawSuit();
-  }, [getLawSuit]);
-  let dateProcess;
+  }, [setLoading]);
+
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);
     }, 5000);
-  }, [message]);
+  }, [message, setMessage]);
   return !loading ? (
     <div className="wrap">
       {message && <MsgSucess>{message}</MsgSucess>}
@@ -37,7 +38,7 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
             <i className="bi bi-folder"></i> Date:{" "}
             <b>
               {
-                (dateProcess = new Date(process.dateProcess).toLocaleDateString(
+                (new Date(process.dateProcess).toLocaleDateString(
                   "pt-br",
                   {
                     day: "numeric",

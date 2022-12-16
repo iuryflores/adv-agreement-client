@@ -5,27 +5,26 @@ import { MsgSucess, DefendantCard } from "../components/Shared";
 
 export const Deals = ({ message, setMessage, loading, setLoading }) => {
   const [deals, setDeals] = useState([]);
-  const [ setProcess] = useState("");
-
-  const getDeals = async () => {
-    try {
-      const data = await api.getDeals();
-      setDeals(data);
-      setProcess(data.processId);
-      setLoading(false);
-    } catch (error) {
-      console.log(error, "Error to get law suit");
-    }
-  };
+  const [setProcess] = useState("");
 
   useEffect(() => {
+    const getDeals = async () => {
+      try {
+        const data = await api.getDeals();
+        setDeals(data);
+        setProcess(data.processId);
+        setLoading(false);
+      } catch (error) {
+        console.log(error, "Error to get law suit");
+      }
+    };
     getDeals();
-  }, [getDeals]);
+  }, [setLoading, setProcess]);
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);
     }, 5000);
-  }, [message]);
+  }, [message, setMessage]);
   return !loading ? (
     <div className="wrap">
       {message && <MsgSucess>{message}</MsgSucess>}

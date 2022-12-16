@@ -17,14 +17,6 @@ export const AddProcess = ({ setMessage }) => {
 
   const navigator = useNavigate();
 
-  const getDefendant = async () => {
-    try {
-      const data = await api.getOneDefendant(id);
-      setDefendant(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -52,8 +44,16 @@ export const AddProcess = ({ setMessage }) => {
     }, 3000);
   };
   useEffect(() => {
+    const getDefendant = async () => {
+      try {
+        const data = await api.getOneDefendant(id);
+        setDefendant(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getDefendant();
-  }, [getDefendant]);
+  }, [id]);
   return (
     <div className="wrap">
       <h3>Adding process of {defendant.full_name}</h3>

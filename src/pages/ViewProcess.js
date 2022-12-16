@@ -19,39 +19,39 @@ export const ViewProcess = ({ message, setMessage, loading, setLoading }) => {
   const [deals, setDeals] = useState([]);
   const [error, setError] = useState(null);
 
-  const getProcess = async () => {
-    try {
-      const data = await api.getProcess(id);
-
-      setProcess(data);
-      setDefendant(data.defendantId);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getDealProcess = async () => {
-    try {
-      const data = await api.getDealProcess(id);
-      setDeals(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const getProcess = async () => {
+      try {
+        const data = await api.getProcess(id);
+
+        setProcess(data);
+        setDefendant(data.defendantId);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getProcess();
-  }, [getProcess]);
+  }, [id, setLoading]);
+
   useEffect(() => {
+    const getDealProcess = async () => {
+      try {
+        const data = await api.getDealProcess(id);
+        setDeals(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getDealProcess();
-  }, [getDealProcess]);
+  }, [id]);
 
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);
     }, 5000);
-  }, [message]);
+  }, [message, setMessage]);
 
   let dateProcess = new Date(process.dateProcess).toLocaleDateString("pt-br", {
     day: "numeric",

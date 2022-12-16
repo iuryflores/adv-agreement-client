@@ -10,30 +10,29 @@ export const DefendantProcess = () => {
   const [lawSuit, setLawSuit] = useState([]);
   const [defendant, setDefendant] = useState("");
 
-  const getDefendant = async () => {
-    try {
-      const data = await api.getOneDefendant(id);
-      setDefendant(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  let dateProcess;
-  const getAllProcessDefendant = async () => {
-    try {
-      const data = await api.getDefendantProcess(id);
-
-      setLawSuit(data);
-    } catch (error) {
-      console.log(error, "Error to get defendants");
-    }
-  };
   useEffect(() => {
+    const getDefendant = async () => {
+      try {
+        const data = await api.getOneDefendant(id);
+        setDefendant(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getDefendant();
-  }, [getDefendant]);
+  }, [id]);
   useEffect(() => {
+    const getAllProcessDefendant = async () => {
+      try {
+        const data = await api.getDefendantProcess(id);
+
+        setLawSuit(data);
+      } catch (error) {
+        console.log(error, "Error to get defendants");
+      }
+    };
     getAllProcessDefendant();
-  }, [getAllProcessDefendant]);
+  }, [id]);
   return (
     <div>
       <Button to={`/defendant/${id}/add-process`}>+</Button>
@@ -52,15 +51,11 @@ export const DefendantProcess = () => {
             <p>
               Date:{" "}
               <b>
-                {
-                  (dateProcess = new Date(
-                    process.dateProcess
-                  ).toLocaleDateString("pt-br", {
-                    day: "numeric",
-                    month: "numeric",
-                    year: "numeric"
-                  }))
-                }
+                {new Date(process.dateProcess).toLocaleDateString("pt-br", {
+                  day: "numeric",
+                  month: "numeric",
+                  year: "numeric"
+                })}
               </b>
             </p>
             <p>
