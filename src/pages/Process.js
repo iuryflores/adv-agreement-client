@@ -30,7 +30,7 @@ export const Process = ({ message, setMessage, loading, setLoading }) => {
       {message !== null && <MsgSucess>{message}</MsgSucess>}
 
       <h3>All Process</h3>
-      {lawsuit.length <= 0 && <><h3> No process registred!</h3><h4>To add a process you must add a defendant first.</h4><ButtonView to='/add-defendant/'>Add Defendant</ButtonView></>}
+      {lawsuit.length <= 0 && <><h3> No process registred!</h3><h4>To add a process you must add a defendant first.</h4><ButtonView to='/defendant/'>Add Defendant</ButtonView></>}
       {lawsuit.map((process, index) => (
         <DefendantCard to={`/process/${process._id}`} key={index}>
           <p>
