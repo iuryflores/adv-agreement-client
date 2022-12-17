@@ -4,7 +4,7 @@ import api from "../utils/api.utils";
 import { useEffect, useState } from "react";
 import { ButtonView, MsgError } from "../components/Shared";
 
-export const EditProcess = ({ setMessage }) => {
+export const EditProcess = ({ loading, setLoading, setMessage }) => {
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -22,20 +22,41 @@ export const EditProcess = ({ setMessage }) => {
   useEffect(() => {
     const getOneProcess = async () => {
       try {
-        const data = await api.getProcess(id);
+        const data = await api.getProcessToEdit(id);
         setProcess(data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
 
     getOneProcess();
-  }, [id]);
+  }, [
+    id,
+    dateProcess,
+    processNumber,
+    complainantName,
+    subject,
+    jurisdiction,
+    judgment,
+    setLoading,
+    loading
+  ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.editProcess({ dateProcess, processNumber }, id);
+      await api.editProcess(
+        {
+          dateProcess,
+          processNumber,
+          complainantName,
+          subject,
+          judgment,
+          jurisdiction
+        },
+        id
+      );
 
       navigate(`/process/${id}`);
       setMessage("Process updated successfuly.");
@@ -44,6 +65,14 @@ export const EditProcess = ({ setMessage }) => {
     }
   };
 
+  let newDate = process?.dateProcess;
+
+  newDate = new Date(newDate).toLocaleDateString("pt-br", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric"
+  });
+
   const showMessage = (error) => {
     setError(error);
     setTimeout(() => {
@@ -51,19 +80,7 @@ export const EditProcess = ({ setMessage }) => {
     }, 3000);
   };
 
-
-  let newDate = process?.dateProcess
- 
-  newDate = new Date(newDate).toLocaleDateString(
-    "pt-br",
-    {
-      day: "numeric",
-      month: "numeric",
-      year: "numeric"
-    }
-  );
-  console.log(newDate)
-  return (
+  return !loading ? (
     <div>
       <h3>Editing process {}</h3>
       {error && <MsgError>{error}</MsgError>}
@@ -75,7 +92,7 @@ export const EditProcess = ({ setMessage }) => {
             className="form-control"
             type="text"
             name="processNumber"
-            placeholder={process.processNumber}
+            placeholder={process?.processNumber}
             value={processNumber}
             onChange={(e) => setProcessNumber(e.target.value)}
           />
@@ -99,7 +116,7 @@ export const EditProcess = ({ setMessage }) => {
             className="form-control"
             type="text"
             name="complainantName"
-            placeholder={process.complainantName}
+            placeholder={process?.complainantName}
             value={complainantName}
             onChange={(e) => setComplainantName(e.target.value)}
           />
@@ -110,7 +127,7 @@ export const EditProcess = ({ setMessage }) => {
             className="form-control"
             type="text"
             name="subject"
-            placeholder={process.subject}
+            placeholder={process?.subject}
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
           />
@@ -121,7 +138,7 @@ export const EditProcess = ({ setMessage }) => {
             className="form-control"
             type="text"
             name="jurisdiction"
-            placeholder={process.jurisdiction}
+            placeholder={process?.jurisdiction}
             value={jurisdiction}
             onChange={(e) => setJurisdiction(e.target.value)}
           />
@@ -132,7 +149,7 @@ export const EditProcess = ({ setMessage }) => {
             className="form-control"
             type="text"
             name="judgment"
-            placeholder={process.judgment}
+            placeholder={process?.judgment}
             value={judgment}
             onChange={(e) => setJudgment(e.target.value)}
           />
@@ -140,5 +157,7 @@ export const EditProcess = ({ setMessage }) => {
         <ButtonView onClick={handleSubmit}>Save</ButtonView>
       </form>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };

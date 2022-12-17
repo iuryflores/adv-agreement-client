@@ -91,7 +91,7 @@ class Api {
   };
   editProcess = async (processData, id) => {
     try {
-      const { data } = await this.api.put(`/process/${id}`, processData);
+      const { data } = await this.api.patch(`/process-edit/${id}`, processData);
       return data;
     } catch (error) {
       throw error.response.data.msg;
@@ -159,6 +159,14 @@ class Api {
   getProcessById = async (id) => {
     try {
       const { data } = await this.api.get(`/process/${id}`);
+      return data;
+    } catch (error) {
+      throw error.response.data.msg;
+    }
+  };
+  getProcessToEdit = async (id) => {
+    try {
+      const { data } = await this.api.get(`/process-edit/${id}`);
       return data;
     } catch (error) {
       throw error.response.data.msg;
