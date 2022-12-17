@@ -1,40 +1,43 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Adv Manager Client
 
-## Available Scripts
+This APP was created to help lawers to manager the agreement pay of all of they lawsuit, he can add lawsuit contents as date, jurisdiction, complainant name and more, can add agreement of process, and manager payments parcels of the agreements.
+## Screenshots
 
-In the project directory, you can run:
+![App Screenshot](https://github.com/iuryflores/adv-agreement-client/blob/main/src/images/screenshot-allpayments.PNG?raw=true)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Dependencies
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- axios
+- react
+- react-dom
+- react-router-dom
+- react-scripts
+- styled-components
+- web-vitals
+## Application Structure
 
-### `npm test`
+*app.js*  - The entry point to our application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*components/* - This folder contains our components.
 
-### `npm run build`
+*pages/* - This folder contains routes pages.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+*utils/* - This folder contains all connections with the api server.
+## Server repo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+https://github.com/iuryflores/adv-agreement-api
+```
+## Deployed API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  https://melodious-twilight-1d4f97.netlify.app/
+```
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Autores
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [@iuryflores](https://www.github.com/iuryflores)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
