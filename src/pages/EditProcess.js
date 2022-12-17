@@ -24,6 +24,12 @@ export const EditProcess = ({ loading, setLoading, setMessage }) => {
       try {
         const data = await api.getProcessToEdit(id);
         setProcess(data);
+        setDateProcess(data.dateProcess);
+        setProcessNumber(data.processNumber);
+        setComplainantName(data.complainantName);
+        setSubject(data.subject);
+        setJurisdiction(data.jurisdiction);
+        setJudgment(data.judgment);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -31,17 +37,7 @@ export const EditProcess = ({ loading, setLoading, setMessage }) => {
     };
 
     getOneProcess();
-  }, [
-    id,
-    dateProcess,
-    processNumber,
-    complainantName,
-    subject,
-    jurisdiction,
-    judgment,
-    setLoading,
-    loading
-  ]);
+  }, [id, setLoading, loading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

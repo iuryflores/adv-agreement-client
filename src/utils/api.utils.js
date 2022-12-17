@@ -92,6 +92,7 @@ class Api {
   editProcess = async (processData, id) => {
     try {
       const { data } = await this.api.patch(`/process-edit/${id}`, processData);
+      console.log(data)
       return data;
     } catch (error) {
       throw error.response.data.msg;
