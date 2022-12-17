@@ -13,7 +13,7 @@ export const DefendantDeals = ({ loading, setLoading }) => {
   useEffect(() => {
     const getDefendant = async () => {
       try {
-        const data = await api.getOneDefendantDeals(id);
+        const data = await api.getDefendantProcess(id);
         setDefendant(data);
         setLoading(false);
       } catch (error) {
