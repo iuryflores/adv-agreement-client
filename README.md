@@ -1,7 +1,7 @@
 
 # Adv Manager Client
 
-This APP was created to help lawers to manager the agreement pay of all of they lawsuit, he can add lawsuit contents as date, jurisdiction, complainant name and more, can add agreement of process, and manager payments parcels of the agreements.
+This APP was created to help lawyers to manager the agreement pay of all of they lawsuit, he can add lawsuit contents as date, jurisdiction, complainant name and more, can add agreement of process, and manager payments parcels of the agreements.
 ## Screenshots
 
 ![App Screenshot](https://github.com/iuryflores/adv-agreement-client/blob/main/src/images/screenshot-allpayments.PNG?raw=true)
